@@ -1,0 +1,161 @@
+{
+  "name": "fritz-ui",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "lint": "next lint",
+    "start": "next start",
+    "semantic-release": "semantic-release"
+  },
+  "author": {
+    "name": "Luke",
+    "email": "lukesthl@users.noreply.github.com",
+    "url": "https://github.com/lukesthl"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/@ryansonshine/cz-conventional-changelog"
+    }
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.0.17",
+    "@lukesthl/fritzbox": "^1.0.1",
+    "@lukesthl/ts-axios-digest-auth": "^1.0.5",
+    "@radix-ui/react-accordion": "^1.1.1",
+    "@radix-ui/react-dialog": "^1.0.3",
+    "@radix-ui/react-dropdown-menu": "^2.0.4",
+    "@radix-ui/react-tabs": "^1.0.3",
+    "@tanstack/react-query": "^4.28.0",
+    "@total-typescript/ts-reset": "^0.4.2",
+    "@tremor/react": "^1.8.0",
+    "@trpc/client": "^10.18.0",
+    "@trpc/next": "^10.18.0",
+    "@trpc/react-query": "^10.18.0",
+    "@trpc/server": "^10.18.0",
+    "axios": "^1.3.4",
+    "class-variance-authority": "^0.5.1",
+    "clsx": "^1.2.1",
+    "fast-xml-parser": "^4.1.3",
+    "form-data": "^4.0.0",
+    "formik": "^2.2.9",
+    "framer-motion": "^10.10.0",
+    "fuse.js": "^6.6.2",
+    "lucide-react": "^0.129.0",
+    "next": "13.2.4",
+    "next-auth": "^4.21.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-responsive": "^9.0.2",
+    "superjson": "1.12.2",
+    "tailwind-merge": "^1.11.0",
+    "tailwindcss-animate": "^1.0.5",
+    "uuid": "^9.0.0",
+    "xmlbuilder": "^15.1.1",
+    "zod": "^3.21.4"
+  },
+  "devDependencies": {
+    "@codedependant/semantic-release-docker": "^4.3.0",
+    "@types/node": "^18.15.11",
+    "@types/prettier": "^2.7.2",
+    "@types/react": "^18.0.32",
+    "@types/react-dom": "^18.0.11",
+    "@types/uuid": "^9.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.37.0",
+    "eslint-config-next": "13.2.4",
+    "eslint-plugin-node": "^11.1.0",
+    "postcss": "^8.4.21",
+    "prettier": "^2.8.7",
+    "prettier-plugin-tailwindcss": "^0.2.6",
+    "tailwindcss": "^3.3.1",
+    "typescript": "^5.0.3",
+    "semantic-release": "^21.0.0",
+    "@ryansonshine/cz-conventional-changelog": "^3.3.4",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "conventional-changelog-conventionalcommits": "^5.0.0"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "plugins": [
+      [
+        "@semantic-release/commit-analyzer",
+        {
+          "preset": "conventionalcommits"
+        }
+      ],
+      [
+        "@semantic-release/release-notes-generator",
+        {
+          "preset": "conventionalcommits",
+          "presetConfig": {
+            "types": [
+              {
+                "type": "feat",
+                "section": "Features"
+              },
+              {
+                "type": "fix",
+                "section": "Bug Fixes"
+              },
+              {
+                "type": "build",
+                "section": "Dependencies and Other Build Updates",
+                "hidden": false
+              }
+            ]
+          }
+        }
+      ],
+      "@semantic-release/github",
+      "@semantic-release/git",
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGELOG.md"
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json",
+            "CHANGELOG.md"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ],
+      [
+        "@codedependant/semantic-release-docker",
+        {
+          "dockerRegistry": "ghcr.io",
+          "dockerLogin": false,
+          "dockerProject": "lukesthl",
+          "dockerTags": [
+            "{{major}}.{{minor}}.{{patch}}",
+            "{{major}}.{{minor}}",
+            "{{major}}-latest",
+            "{{git_sha}}",
+            "latest"
+          ],
+          "dockerArgs": {
+            "GITHUB_TOKEN": true
+          }
+        }
+      ]
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/lukesthl/fritz-ui/issues"
+  },
+  "homepage": "https://github.com/lukesthl/fritz-ui#readme",
+  "ct3aMetadata": {
+    "initVersion": "7.3.2"
+  }
+}

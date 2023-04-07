@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.dark {
+  color-scheme: dark;
+}
+
+.box-blur {
+  --tw-shadow-colored: 0 25px 200px -20px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.background {
+  background: radial-gradient(
+      63.94% 63.94% at 50% 0%,
+      rgba(255, 255, 255, 0.12) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    #000212;
+}
+
+.wrapper {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  mask: url("/stars.svg");
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.gradient {
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    #000000 24.68%,
+    #ffffff 41.49%,
+    #000000 50%,
+    #000000 72.92%,
+    #ffffff 89.06%,
+    #000000 96.88%
+  );
+  border-radius: 999px;
+  position: absolute;
+  left: calc(50% - 20vw);
+  top: 5vw;
+}
+
+.gridwrapper::before {
+  content: "";
+  width: 665px;
+  height: 470px;
+  background: url(/grid.svg);
+  background-size: cover;
+  position: absolute;
+  top: calc(50% - 235px);
+  right: calc(50% - 332px);
+}
+
+.recharts-tooltip-wrapper > div {
+  --tw-shadow-colored: 0 25px 200px -20px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  @apply bg-[#191A23]/30 text-white/80 shadow-white/10 backdrop-blur-sm;
+}
+
+.recharts-tooltip-wrapper * {
+  @apply border-white/20 text-white/80 !important;
+}
