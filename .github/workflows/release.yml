@@ -60,5 +60,3 @@ jobs:
           NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
           NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
         run: npx semantic-release
-      - name: Upload Code Coverage
-        uses: codecov/codecov-action@v3.1.0
