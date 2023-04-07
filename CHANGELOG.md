@@ -1,3 +1,10 @@
+## 1.0.0 (2023-04-07)
+
+
+### Bug Fixes
+
+* remove codeql ([8ae3788](https://github.com/lukesthl/fritz-ui/commit/8ae3788684100b813b1ab8281ab0532a7b4e6065))
+
 ## [1.0.1](https://github.com/lukesthl/fritz-ui/compare/v1.0.0...v1.0.1) (2023-04-04)
 
 
