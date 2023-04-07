@@ -36,14 +36,6 @@ jobs:
             ${{ runner.os }}-pnpm-store-
       - name: Install dependencies
         run: pnpm install
-      # - name: Build
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #     NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
-      #     NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
-      #   run: pnpm run build
-      # - name: Test
-      #   run: npm test
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v2
