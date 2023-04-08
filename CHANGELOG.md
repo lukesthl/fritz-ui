@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/lukesthl/fritz-ui/compare/v1.0.0...v1.0.1) (2023-04-08)
+
+
+### Bug Fixes
+
+* override built env variables with runtime ([9f0c109](https://github.com/lukesthl/fritz-ui/commit/9f0c10961c05f40f0e4bfc937b541da96adca220))
+
 ## 1.0.0 (2023-04-07)
 
 
