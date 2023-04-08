@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/lukesthl/fritz-ui/compare/v1.0.1...v1.0.2) (2023-04-08)
+
+
+### Bug Fixes
+
+* fritzbox auth ([4c12c4c](https://github.com/lukesthl/fritz-ui/commit/4c12c4cd8cc29683db53ce4b234e389dab1b6bb1))
+
 ## [1.0.1](https://github.com/lukesthl/fritz-ui/compare/v1.0.0...v1.0.1) (2023-04-08)
 
 
