@@ -5,8 +5,14 @@ class FritzBoxServiceSingleton {
 
   public init(options: Partial<IOptions>): void {
     if (!this.fritzbox) {
-      console.log(options);
-      this.fritzbox = new FritzBox(options);
+      this.fritzbox = new FritzBox({
+        host: process.env.FRITZBOX_HOST,
+        port: process.env.FRITZBOX_PORT
+          ? parseInt(process.env.FRITZBOX_PORT)
+          : undefined,
+        ssl: process.env.FRITZBOX_SSL === "1",
+        ...options,
+      });
     }
   }
 

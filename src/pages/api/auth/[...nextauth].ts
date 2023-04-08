@@ -3,6 +3,7 @@ import { randomUUID } from "crypto";
 import NextAuth, { type NextAuthOptions, type Session } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { userSchema } from "../../../types/user.schema";
+import { FritzBoxService } from "../../../server/api/services/fritzbox.service";
 
 export const authOptions: NextAuthOptions = {
   callbacks: {
@@ -42,13 +43,12 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (credentials) {
-          const fritzbox = new FritzBox({
+          FritzBoxService.init({
             username: credentials?.username,
             password: credentials?.password,
-            ssl: false,
           });
           try {
-            await fritzbox.deviceInfo.getInfo();
+            await FritzBoxService.fritzBox.deviceInfo.getInfo();
             return {
               id: randomUUID(),
               fritzbox: {

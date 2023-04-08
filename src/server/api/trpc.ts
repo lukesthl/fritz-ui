@@ -58,11 +58,6 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
     FritzBoxService.init({
       username: session.user.fritzbox.username,
       password: session.user.fritzbox.password,
-      host: process.env.FRITZBOX_HOST,
-      port: process.env.FRITZBOX_PORT
-        ? parseInt(process.env.FRITZBOX_PORT)
-        : undefined,
-      ssl: process.env.FRITZBOX_SSL === "1",
     });
   }
   await FritzBoxService.fritzBox.init();
