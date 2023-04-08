@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.17",
-    "@lukesthl/fritzbox": "^1.0.1",
+    "@lukesthl/fritzbox": "^1.0.2",
     "@lukesthl/ts-axios-digest-auth": "^1.0.5",
     "@radix-ui/react-accordion": "^1.1.1",
     "@radix-ui/react-dialog": "^1.0.3",

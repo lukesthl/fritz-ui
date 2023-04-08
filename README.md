@@ -40,7 +40,7 @@ docker run -d --restart=always -p 3000:3000 -e NEXTAUTH_URL='http://localhost:30
   -e NEXTAUTH_SECRET='secert' \
   -e FRITZBOX_SSL='0' \
   -e FRITZBOX_HOST='fritz.box' \
-  -e FRITZBOX_PORT='80'  --name fritz-ui 301946e15bfde123bfefaeb92794210f0e1c72144b014b0349752c8fec1adf4e
+  -e FRITZBOX_PORT='49000'  --name fritz-ui 301946e15bfde123bfefaeb92794210f0e1c72144b014b0349752c8fec1adf4e
 ```
 
 ## Tech Stack

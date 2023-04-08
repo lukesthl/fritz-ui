@@ -5,6 +5,7 @@ class FritzBoxServiceSingleton {
 
   public init(options: Partial<IOptions>): void {
     if (!this.fritzbox) {
+      console.log(options);
       this.fritzbox = new FritzBox(options);
     }
   }

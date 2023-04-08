@@ -65,6 +65,13 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
       ssl: process.env.FRITZBOX_SSL === "1",
     });
   }
+  console.log({
+    host: process.env.FRITZBOX_HOST,
+    port: process.env.FRITZBOX_PORT
+      ? parseInt(process.env.FRITZBOX_PORT)
+      : undefined,
+    ssl: process.env.FRITZBOX_SSL === "1",
+  });
   await FritzBoxService.fritzBox.init();
   return createInnerTRPCContext({
     session,
