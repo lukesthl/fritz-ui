@@ -6,6 +6,7 @@ import { Table } from "../components/table";
 import Fuse from "fuse.js";
 import { api } from "../utils/api";
 import { useEffect, useState } from "react";
+import { faker } from "@faker-js/faker";
 
 const NetworkDevices: NextPage = () => {
   const networkDevicesQuery = api.networkDevices.getAll.useQuery();
@@ -15,6 +16,17 @@ const NetworkDevices: NextPage = () => {
   useEffect(() => {
     if (!searchValue) {
       setFilteredData(networkDevicesQuery.data);
+    }
+    if (process.env.NEXT_PUBLIC_DEMOMODE === "1") {
+      setFilteredData(
+        networkDevicesQuery.data?.map((device, index) => ({
+          ...device,
+          name: `Netzwerkgerät ${index + 1}`,
+          ip: faker.internet.ip(),
+          mac: faker.internet.mac(),
+          interface: faker.helpers.arrayElement(["LAN", "WLAN"]),
+        }))
+      );
     }
   }, [networkDevicesQuery.data]);
 

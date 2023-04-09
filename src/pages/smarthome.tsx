@@ -28,6 +28,7 @@ import {
   TabsTrigger,
 } from "../components/ui/tabs";
 import { api } from "../utils/api";
+import { faker } from "@faker-js/faker";
 
 const columns: React.ComponentProps<
   typeof Table<Device, keyof Device>
@@ -122,6 +123,33 @@ const SmartHome: NextPage = () => {
       setFilteredDeviceData(smartHomeDevicesQuery.data?.devices || []);
       setFilteredGroupData(smartHomeDevicesQuery.data?.deviceGroups || []);
     }
+    if (
+      process.env.NEXT_PUBLIC_DEMOMODE === "1" &&
+      smartHomeDevicesQuery.data
+    ) {
+      setFilteredDeviceData(
+        smartHomeDevicesQuery.data?.devices?.map((device, index) => ({
+          ...device,
+          name: `Gerät ${index + 1}`,
+          type: faker.helpers.arrayElement(Object.values(DeviceType)) as any,
+          active: faker.datatype.boolean(),
+          battery: {
+            percentage: faker.datatype.number({ min: 0, max: 100 }),
+          },
+        }))
+      );
+      setFilteredGroupData(
+        smartHomeDevicesQuery.data?.deviceGroups?.map((group, index) => ({
+          ...group,
+          name: `Gruppe ${index + 1}`,
+          type: faker.helpers.arrayElement(Object.values(DeviceType)) as any,
+          active: faker.datatype.boolean(),
+          battery: {
+            percentage: faker.datatype.number({ min: 0, max: 100 }),
+          },
+        }))
+      );
+    }
   }, [
     smartHomeDevicesQuery.data?.devices,
     smartHomeDevicesQuery.data?.deviceGroups,
@@ -142,6 +170,39 @@ const SmartHome: NextPage = () => {
             setFilteredGroupData(
               smartHomeDevicesQuery.data?.deviceGroups || []
             );
+            if (
+              process.env.NEXT_PUBLIC_DEMOMODE === "1" &&
+              smartHomeDevicesQuery.data
+            ) {
+              setFilteredDeviceData(
+                smartHomeDevicesQuery.data?.devices?.map((device, index) => ({
+                  ...device,
+                  name: `Gerät ${index + 1}`,
+                  type: faker.helpers.arrayElement(
+                    Object.values(DeviceType)
+                  ) as any,
+                  active: faker.datatype.boolean(),
+                  battery: {
+                    percentage: faker.datatype.number({ min: 0, max: 100 }),
+                  },
+                }))
+              );
+              setFilteredGroupData(
+                smartHomeDevicesQuery.data?.deviceGroups?.map(
+                  (group, index) => ({
+                    ...group,
+                    name: `Gruppe ${index + 1}`,
+                    type: faker.helpers.arrayElement(
+                      Object.values(DeviceType)
+                    ) as any,
+                    active: faker.datatype.boolean(),
+                    battery: {
+                      percentage: faker.datatype.number({ min: 0, max: 100 }),
+                    },
+                  })
+                )
+              );
+            }
             setSelectedTab(value);
           }}
           className="w-full"
