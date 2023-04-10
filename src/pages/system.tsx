@@ -7,20 +7,11 @@ import { Card } from "../components/card";
 import { List } from "../components/list";
 import { Button } from "../components/button";
 import { ArrowPathIcon } from "@heroicons/react/20/solid";
-import { faker } from "@faker-js/faker";
 
 const System: NextPage = () => {
   const deviceInfoQuery = api.deviceInfo.getInfo.useQuery();
   const ecoStatsQuery = api.deviceInfo.getEcoStats.useQuery();
   const rebootMutation = api.deviceInfo.reboot.useMutation();
-
-  let deviceInfo = deviceInfoQuery.data;
-  if (process.env.NEXT_PUBLIC_DEMOMODE === "1" && deviceInfo) {
-    deviceInfo = {
-      ...deviceInfo,
-      NewSerialNumber: faker.random.numeric(10),
-    };
-  }
   return (
     <PageContent
       title="Einstellungen"
@@ -47,20 +38,22 @@ const System: NextPage = () => {
             <List.Wrapper loading={deviceInfoQuery.isLoading}>
               <List.Item className="border-y border-white/20">
                 Modell
-                {deviceInfo?.NewHardwareVersion}
+                {deviceInfoQuery.data?.NewHardwareVersion}
               </List.Item>
               <List.Item>
                 Seriennummer
-                {deviceInfo?.NewSerialNumber}
+                {deviceInfoQuery.data?.NewSerialNumber}
               </List.Item>
               <List.Item className="border-y border-white/20">
                 Software Version
-                {deviceInfo?.NewSoftwareVersion}
+                {deviceInfoQuery.data?.NewSoftwareVersion}
               </List.Item>
               <List.Item>
                 Online seit
-                {deviceInfo?.NewUpTime
-                  ? `${(deviceInfo.NewUpTime / 60 / 60 / 24).toFixed(0)} Tagen`
+                {deviceInfoQuery.data?.NewUpTime
+                  ? `${(deviceInfoQuery.data.NewUpTime / 60 / 60 / 24).toFixed(
+                      0
+                    )} Tagen`
                   : 0}
               </List.Item>
             </List.Wrapper>
@@ -219,10 +212,7 @@ const System: NextPage = () => {
                           /[^\r\n]+/g
                         )?.map((logPerLine) => {
                           const date = logPerLine.slice(0, 17);
-                          let logEntry = logPerLine.slice(18, -1);
-                          if (process.env.NEXT_PUBLIC_DEMOMODE === "1") {
-                            logEntry = faker.lorem.sentence();
-                          }
+                          const logEntry = logPerLine.slice(18, -1);
                           return (
                             <tr key={uuidv4()}>
                               <td className="whitespace-nowrap align-baseline font-semibold text-white/80">

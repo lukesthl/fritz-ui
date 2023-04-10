@@ -3,27 +3,10 @@ import { api } from "../../utils/api";
 import { SmartHomeChart } from "./smarthome.chart";
 
 export const SmartHomeCharts = () => {
-  const smartHomeDevicesQuery = api.smartHome.getAll.useQuery();
-  let smartHomeDevices = smartHomeDevicesQuery.data;
-  if (
-    process.env.NEXT_PUBLIC_DEMOMODE === "1" &&
-    smartHomeDevices?.deviceGroups &&
-    smartHomeDevices?.devices
-  ) {
-    smartHomeDevices = {
-      devices: smartHomeDevices.devices.map((device, index) => ({
-        ...device,
-        name: "Mein Gerät " + (index + 1),
-      })),
-      deviceGroups: smartHomeDevices.deviceGroups.map((group, index) => ({
-        ...group,
-        name: "Meine Gruppe " + (index + 1),
-      })),
-    };
-  }
+  const smartHomeDevices = api.smartHome.getAll.useQuery();
   return (
     <>
-      {smartHomeDevices?.devices.map((device) => (
+      {smartHomeDevices.data?.devices.map((device) => (
         <>
           {device.type === DeviceType.Thermostat ? (
             <div className="col-span-2" key={device.ain}>
@@ -67,7 +50,7 @@ export const SmartHomeCharts = () => {
           ) : null}
         </>
       ))}
-      {smartHomeDevices?.deviceGroups.map((group) => (
+      {smartHomeDevices.data?.deviceGroups.map((group) => (
         <>
           {group.associated?.[0]?.type === DeviceType.Thermostat ? (
             <div className="col-span-2" key={group.ain}>
