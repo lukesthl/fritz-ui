@@ -9,8 +9,8 @@ import { PageContent } from "../components/pagecontent";
 const Dashboard: NextPage = () => {
   return (
     <PageContent
-      title="Willkommen bei Fritz-UI"
-      description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat consequuntur ipsam enim odio facere asperiores voluptatibus quas repellat, odit laudantium voluptate corrupti eligendi possimus, autem qui iusto repellendus aliquid animi."
+      title="Dashboard"
+      description="Das Dashboard bietet Ihnen in Infos über die CPU-Auslastung und die Internet-Bandbreite Ihres Routers. Darüber hinaus erhalten Sie eine Übersicht über Statistiken Ihrer Smart Home Geräte."
     >
       <div className="grid grid-cols-6 gap-4">
         <div className="col-span-2">

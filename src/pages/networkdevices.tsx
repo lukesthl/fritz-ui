@@ -33,7 +33,7 @@ const NetworkDevices: NextPage = () => {
   return (
     <PageContent
       title="Netzwerkgeräte"
-      description="Hier sehen Sie, wie Ihre Geräte aktuell mit Ihrer FRITZ!Box verbunden sind. Hier können Sie auch sehen, ob für Ihre FRITZ!-Produkte Software-Updates vorhanden sind und für welche FRITZ!-Produkte Sie Mesh aktivieren können"
+      description="Hier sehen Sie, wie Ihre Geräte aktuell mit Ihrer FRITZ!Box verbunden sind. Sie können nach Geräten suchen, die sich im Netzwerk befinden."
     >
       <div className="md:max-w-3xl 2xl:max-w-5xl">
         <div className="flex justify-end">
