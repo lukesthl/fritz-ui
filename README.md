@@ -21,7 +21,7 @@ https://user-images.githubusercontent.com/44963006/230889693-20225732-0f8f-43a3-
 
 - Dashboard with Router, SmartHome Device Stats
 - All your network devices in one list
-- SmartHome Devices with current temperature
+- SmartHome Devices with current temperature, battery status and more
 - Login with your fritzbox user credential
 
 ## Installation
@@ -55,8 +55,6 @@ These variables must also be provided at runtime
 | FRITZBOX_HOST   | fritzbox host                                                                                                                                                                    | optional | `fritz.box`             |
 | FRITZBOX_PORT   | fritzbox port                                                                                                                                                                    | optional | `49000`                 |
 | FRITZBOX_SSL    | is fritzbox accessible via https (1 = true, 0 = false)                                                                                                                           | optional | `0`                     |
-
-### Build-time variables
 
 ## Tech Stack
 
