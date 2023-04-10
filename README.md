@@ -1,74 +1,79 @@
 <a href="https://github.com/lukesthl/fritz-ui">
-  <img alt="Fritz-UI" src="">
   <h1 align="center">Fritz UI</h1>
 </a>
-
 <p align="center">
-TODO
+Beautiful, fast and modern UI for the FRITZ!Box. Get a simple overview over your Router, Networkdevices and SmartHome Devices. 
 </p>
 <p align="center">
   <a href="#about-the-project"><strong>About The Project</strong></a> ·
-  <a href="#requirements"><strong>Requirements</strong></a> ·
+  <a href="#features"><strong>Features</strong></a> ·
   <a href="#installation"><strong>Installation</strong></a> ·
-  <a href="#tech-stack"><strong>Tech Stack</strong></a> ·
-  <a href="#author"><strong>Author</strong></a>
+  <a href="#configuration"><strong>Configuration</strong></a> ·
+  <a href="#tech-stack"><strong>Tech Stack</strong></a>
 </p>
 <br/>
 
 ## About The Project
 
-TODO
+https://user-images.githubusercontent.com/44963006/230889693-20225732-0f8f-43a3-9181-178596689273.mp4
 
-## Requirements
+## Features
 
-- [Motion Detector App](https://github.com/lukesthl/motion-detector/releases) installed (MacOS, Windows, Ubuntu)
-- Raspberry Pi
-  - 64-bit OS
-  - [Bun](https://github.com/oven-sh/bun#install) installed
-  - Python 3 and [GPIO zero](https://gpiozero.readthedocs.io/en/stable/installing.html) installed
-  - Server (RPi) must only be reached in local network
-  - Raspberry Pi with [Infrared Sensor](https://projects.raspberrypi.org/en/projects/physical-computing/11) connected on GPIO Pin
+- Dashboard with Router, SmartHome Device Stats
+- All your network devices in one list
+- SmartHome Devices with current temperature
+- Login with your fritzbox user credential
 
-## Server Installation
+## Installation
 
-1. Clone the repository onto your Raspberry Pi:
+Docker
 
 ```bash
-docker run -d --restart=always -p 300:3000 --name fritz-ui 0062836749ab72225f3676edc518e569cb418867d59365a42d5cbc02b4f1fb9f
-
-docker run -d --restart=always -p 3000:3000 -e NEXTAUTH_URL='http://localhost:3000' \
-  -e NEXTAUTH_SECRET='secert' \
-  -e FRITZBOX_SSL='0' \
-  -e FRITZBOX_HOST='fritz.box' \
-  -e FRITZBOX_PORT='49000'  --name fritz-ui 301946e15bfde123bfefaeb92794210f0e1c72144b014b0349752c8fec1adf4e
+docker run -d --restart=always -p 3000:3000 --name fritz-ui ghcr.io/lukesthl/fritz-ui:latest
 ```
+
+## Configuration
+
+```bash
+docker run -d --restart=always -p 3000:3000 -e NEXTAUTH_URL='http://localhost:3000' \
+  -e NEXTAUTH_URL='http://localhost:3000' \
+  -e NEXTAUTH_SECRET='secret' \
+  -e FRITZBOX_HOST='fritz.box' \
+  -e FRITZBOX_PORT='49000'  \
+  -e FRITZBOX_SSL='0' \
+  --name fritz-ui ghcr.io/lukesthl/fritz-ui:latest
+```
+
+### Run-time variables
+
+These variables must also be provided at runtime
+
+| Variable        | Description                                                                                                                                                                      | Required | Default                 |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------------------- |
+| NEXTAUTH_URL    | Base URL of the site. NOTE: if this value differs from the value used at build-time, there will be a slight delay during container start (to update the statically built files). | optional | `http://localhost:3000` |
+| NEXTAUTH_SECRET | jwt secret                                                                                                                                                                       | optional | `secret`                |
+| FRITZBOX_HOST   | fritzbox host                                                                                                                                                                    | optional | `fritz.box`             |
+| FRITZBOX_PORT   | fritzbox port                                                                                                                                                                    | optional | `49000`                 |
+| FRITZBOX_SSL    | is fritzbox accessible via https (1 = true, 0 = false)                                                                                                                           | optional | `0`                     |
+
+### Build-time variables
 
 ## Tech Stack
 
-### Frontend (App)
+###
 
-- [Tauri](https://tauri.app/) – Tauri is a framework for building tiny, blazingly fast binaries for all major desktop platforms
-- [SvelteKit](https://kit.svelte.dev/) – SvelteKit is built on Svelte, a UI framework for making interactive webpages
-- [Vite](https://vitejs.dev/) – Vite is a build tool for Frontends. It allows for faster development thanks to fast Hot Module Reload (HMR)
-- [TailwindCSS](https://tailwindcss.com/) - Tailwind CSS is basically a utility-first CSS framework for rapidly building custom user interfaces
-
-### Backend (Raspberry Pi Server)
-
-- [Bun](https://bun.sh/) – Bun is a fast all-in-one JavaScript runtime like nodejs or deno
-- [SQLite](https://www.sqlite.org/) – SQL database engine (only one currently supported by bun)
+- [Nextjs](https://nextjs.org/)
+- [tRPC](https://trpc.io/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [NextAuth.js](https://next-auth.js.org/)
+- [Fritzbox](https://github.com/lukesthl/fritzbox)
 
 ## Ideas
 
-- [ ] Dashboard
-- [ ] Add more Actions (E-Mail, Phillips Hue, Sound)
-- [ ] Mobile App Support (https://tauri.app/blog/2022/12/09/tauri-mobile-alpha/)
-- [ ] Multiple Server/Sensor Support
+- [ ] Customizable Dashboard
+- [ ] Multi Language Support
+- [ ] Edit Network Device Properties
 
-## Known Limitations
+## Security
 
-- MacOS Notifications not popping up (only shown in notification panel): https://github.com/tauri-apps/tauri/issues/5488
-- Bun Docker build with aarch64: https://github.com/oven-sh/bun/issues/1219
-
-## Author
-
-- Luke Stahl ([@lukesthl](https://github.com/lukesthl))
+You can technically host it on a vps, however i don't recommend it. Always host on a private network, which is not accessible publicly.
