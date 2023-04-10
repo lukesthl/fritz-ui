@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/lukesthl/fritz-ui/compare/v1.0.2...v1.0.3) (2023-04-10)
+
+
+### Bug Fixes
+
+* add favicons and texts ([c22639f](https://github.com/lukesthl/fritz-ui/commit/c22639f949939f396cdcf060c50a08234e9e496e))
+
 ## [1.0.2](https://github.com/lukesthl/fritz-ui/compare/v1.0.1...v1.0.2) (2023-04-08)
 
 
