@@ -39,7 +39,7 @@ export const Table = <T, K extends keyof T>({
         direction: column.defaultSort,
       });
     }
-  }, []);
+  }, [columns]);
   const sortedData = sortedColumn
     ? [...data].sort((a, b) => {
         if (sortedColumn) {
@@ -113,7 +113,7 @@ export const Table = <T, K extends keyof T>({
                       />
                       <ChevronDownIcon
                         className={clsx(
-                          "-mt-[3.75px] -mb-1 h-3.5 w-3.5 transition-opacity duration-200 ease-in-out",
+                          "-mb-1 -mt-[3.75px] h-3.5 w-3.5 transition-opacity duration-200 ease-in-out",
                           {
                             "opacity-50":
                               sortedColumn?.key === column.key &&

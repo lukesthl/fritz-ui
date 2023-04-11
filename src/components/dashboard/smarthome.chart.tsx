@@ -1,4 +1,4 @@
-import { IDeviceStats } from "@lukesthl/fritzbox/homeautomation/devicestats";
+import type { IDeviceStats } from "@lukesthl/fritzbox/homeautomation/devicestats";
 import { api } from "../../utils/api";
 import { DashboardCard } from "./dashboard.card";
 
@@ -100,7 +100,7 @@ export const SmartHomeChart = ({
     title,
     loading: deviceStat.isLoading,
     categories,
-    dataKey: "date",
+    index: "date",
     data: filteredData,
     valueFormatter: (value) => `${value}${displayDataType(type)}`,
     maxValue: Math.max(

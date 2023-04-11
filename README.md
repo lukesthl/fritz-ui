@@ -20,6 +20,7 @@ https://user-images.githubusercontent.com/44963006/230889693-20225732-0f8f-43a3-
 ## Features
 
 - Dashboard with Router, SmartHome Device Stats
+- Mobile Responsive
 - All your network devices in one list
 - SmartHome Devices with current temperature, battery status and more
 - Login with your fritzbox user credential
@@ -71,6 +72,7 @@ These variables must also be provided at runtime
 - [ ] Customizable Dashboard
 - [ ] Multi Language Support
 - [ ] Edit Network Device Properties
+- [ ] Move to app dir with rsc ([waiting for tRPC](https://github.com/trpc/trpc/discussions/3185#discussioncomment-4167473))
 
 ## Security
 

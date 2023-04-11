@@ -1,15 +1,14 @@
-import { FritzBox } from "@lukesthl/fritzbox";
 import { randomUUID } from "crypto";
 import NextAuth, { type NextAuthOptions, type Session } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { userSchema } from "../../../types/user.schema";
 import { FritzBoxService } from "../../../server/api/services/fritzbox.service";
+import { userSchema } from "../../../types/user.schema";
 
 export const authOptions: NextAuthOptions = {
   callbacks: {
     session: ({ session: nextAuthSession, token }) => {
       const userToken = userSchema.safeParse(token);
-      const session = nextAuthSession as Session;
+      const session = nextAuthSession;
       if (session?.user && userToken.success) {
         session.user.id = userToken.data.id;
         session.user.fritzbox = userToken.data.fritzbox;

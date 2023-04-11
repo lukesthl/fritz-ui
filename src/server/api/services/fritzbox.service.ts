@@ -1,4 +1,5 @@
-import { FritzBox, IOptions } from "@lukesthl/fritzbox";
+import type { IOptions } from "@lukesthl/fritzbox";
+import { FritzBox } from "@lukesthl/fritzbox";
 
 class FritzBoxServiceSingleton {
   private fritzbox: FritzBox | null = null;

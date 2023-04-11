@@ -11,7 +11,7 @@ export const CpuTempChart = () => {
     title: title,
     loading: query.isLoading,
     categories: [title],
-    dataKey: "date",
+    index: "date",
     data: (query.data?.data.cputemp.series[0] || [])
       .filter((cpuTemp) => parseInt(cpuTemp) > 40)
       .map((cpuTemp, index) => {

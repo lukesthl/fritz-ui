@@ -1,7 +1,5 @@
-import {
-  Device,
-  DeviceType,
-} from "@lukesthl/fritzbox/homeautomation/smarthome";
+import type { Device } from "@lukesthl/fritzbox/homeautomation/smarthome";
+import { DeviceType } from "@lukesthl/fritzbox/homeautomation/smarthome";
 import clsx from "clsx";
 import Fuse from "fuse.js";
 import { type NextPage } from "next";
@@ -125,6 +123,7 @@ const SmartHome: NextPage = () => {
   }, [
     smartHomeDevicesQuery.data?.devices,
     smartHomeDevicesQuery.data?.deviceGroups,
+    searchValue,
   ]);
 
   return (

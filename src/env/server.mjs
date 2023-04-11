@@ -6,17 +6,15 @@
 import { serverSchema, serverEnv } from "./schema.mjs";
 import { env as clientEnv, formatErrors } from "./client.mjs";
 
-// TODO: Uncomment this once the server env is validated
-// const _serverEnv = serverSchema.safeParse(serverEnv);
-const _serverEnv = serverEnv;
+const _serverEnv = serverSchema.safeParse(serverEnv);
 
-// if (!_serverEnv.success) {
-//   console.error(
-//     "❌ Invalid environment variables:\n",
-//     ...formatErrors(_serverEnv.error.format())
-//   );
-//   throw new Error("Invalid environment variables");
-// }
+if (!_serverEnv.success) {
+  console.error(
+    "❌ Invalid environment variables:\n",
+    ...formatErrors(_serverEnv.error.format())
+  );
+  throw new Error("Invalid environment variables");
+}
 
 for (let key of Object.keys(_serverEnv)) {
   if (key.startsWith("NEXT_PUBLIC_")) {
@@ -26,4 +24,4 @@ for (let key of Object.keys(_serverEnv)) {
   }
 }
 
-export const env = { ..._serverEnv, ...clientEnv };
+export const env = { ..._serverEnv.data, ...clientEnv };

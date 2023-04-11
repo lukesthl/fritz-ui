@@ -7,6 +7,7 @@ ENV BUILT_FRITZBOX_PORT=49000
 ENV BUILT_FRITZBOX_SSL=0
 ENV BUILT_NEXTAUTH_URL=http://localhost:3000
 ENV BUILT_NEXTAUTH_SECRET=secret
+ENV SKIP_ENV_VALIDATION=true
 
 # Install dependencies only when needed
 FROM base AS deps

@@ -5,6 +5,7 @@ import { cn } from "../utils/class.helper";
 export const DashboardCard = ({
   loading,
   title,
+  className,
   ...chartProps
 }: {
   title: string;
@@ -28,22 +29,20 @@ export const DashboardCard = ({
                 {"only to show animation when loaded"}
               </span>
               <AreaChart
-                height="h-72"
                 maxValue={100}
                 colors={["indigo"]}
                 valueFormatter={(value) => `${value}%`}
-                marginTop="mt-1"
+                className={cn("mt-1 h-72", className)}
                 {...chartProps}
                 data={[]}
               />
             </>
           ) : (
             <AreaChart
-              height="h-72"
               maxValue={100}
               colors={["indigo"]}
               valueFormatter={(value) => `${value}%`}
-              marginTop="mt-1"
+              className={cn("mt-1 h-72", className)}
               {...chartProps}
             />
           )}

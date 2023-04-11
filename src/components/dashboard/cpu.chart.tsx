@@ -11,7 +11,7 @@ export const CpuChart = () => {
     title: title,
     loading: query.isLoading,
     categories: [title],
-    dataKey: "date",
+    index: "date",
     data: (query.data?.data.cpuutil.series.at(0) || []).map(
       (cpuUsage, index) => {
         const date = DashboardHelper.getDateByTooComplicatedFritzboxFormat(

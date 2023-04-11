@@ -7,6 +7,7 @@ import { Card } from "../components/card";
 import { List } from "../components/list";
 import { Button } from "../components/button";
 import { ArrowPathIcon } from "@heroicons/react/20/solid";
+import { cn } from "../components/utils/class.helper";
 
 const System: NextPage = () => {
   const deviceInfoQuery = api.deviceInfo.getInfo.useQuery();
@@ -72,12 +73,11 @@ const System: NextPage = () => {
                     <AreaChart
                       data={[]}
                       categories={["CPU-Auslastung"]}
-                      dataKey="date"
-                      height="h-72"
+                      index="date"
                       maxValue={100}
                       colors={["indigo"]}
                       valueFormatter={(value) => `${value}%`}
-                      marginTop="mt-1"
+                      className={cn("mt-1 h-72")}
                     />
                   </>
                 ) : (
@@ -116,12 +116,11 @@ const System: NextPage = () => {
                       };
                     })}
                     categories={["CPU-Auslastung"]}
-                    dataKey="date"
-                    height="h-72"
+                    index="date"
                     maxValue={100}
                     colors={["indigo"]}
                     valueFormatter={(value) => `${value}%`}
-                    marginTop="mt-1"
+                    className="mt-1 h-72"
                   />
                 )}
               </div>
@@ -142,13 +141,12 @@ const System: NextPage = () => {
                       data={[]}
                       categories={["CPU-Temperatur"]}
                       showTooltip
-                      dataKey="date"
-                      height="h-72"
+                      index="date"
                       maxValue={140}
                       minValue={40}
                       colors={["indigo"]}
                       valueFormatter={(value) => `${value}°C`}
-                      marginTop="mt-1"
+                      className="mt-1 h-72"
                     />
                   </>
                 ) : (
@@ -187,13 +185,12 @@ const System: NextPage = () => {
                       })}
                     categories={["CPU-Temperatur"]}
                     showTooltip
-                    dataKey="date"
-                    height="h-72"
+                    index="date"
                     maxValue={140}
                     minValue={40}
                     colors={["indigo"]}
                     valueFormatter={(value) => `${value}°C`}
-                    marginTop="mt-1"
+                    className="mt-1 h-72"
                   />
                 )}
               </div>

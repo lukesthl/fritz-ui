@@ -12,18 +12,18 @@ const Dashboard: NextPage = () => {
       title="Dashboard"
       description="Das Dashboard bietet Ihnen in Infos über die CPU-Auslastung und die Internet-Bandbreite Ihres Routers. Darüber hinaus erhalten Sie eine Übersicht über Statistiken Ihrer Smart Home Geräte."
     >
-      <div className="grid grid-cols-6 gap-4">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-6">
         <div className="col-span-2">
           <CpuChart />
         </div>
-        <div className="col-span-4">
+        <div className="col-span-2 md:col-span-4">
           <BandwidthChart />
         </div>
         <NetworkInfoCards />
-        <div className="col-span-2">
+        <div className="col-span-2 md:col-span-2">
           <CpuChart />
         </div>
-        <div className="col-span-2">
+        <div className="col-span-2 md:col-span-2">
           <CpuTempChart />
         </div>
         <SmartHomeCharts />

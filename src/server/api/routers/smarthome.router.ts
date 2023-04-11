@@ -1,5 +1,5 @@
 import { z } from "zod";
-import {
+import type {
   IDeviceStats,
   Stats,
 } from "@lukesthl/fritzbox/homeautomation/devicestats";

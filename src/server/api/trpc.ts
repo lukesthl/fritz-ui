@@ -20,7 +20,7 @@ import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 import { type Session } from "next-auth";
 
 import { getServerAuthSession } from "../auth";
-import { FritzBox } from "@lukesthl/fritzbox";
+import type { FritzBox } from "@lukesthl/fritzbox";
 
 type CreateContextOptions = {
   session: Session | null;

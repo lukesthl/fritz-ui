@@ -13,7 +13,7 @@ export const BandwidthChart = () => {
     title: "Bandbreite",
     loading: networkMonitorQuery.isLoading,
     categories: ["Downstream", "Upstream"],
-    dataKey: "date",
+    index: "date",
     data: (networkTraffic || []).map(
       ({
         downBytes,

@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { NavigationMenu } from "../components/navigation/navigation.menu";
 import "../styles/globals.css";
-import "@tremor/react/dist/esm/tremor.css";
 import { api } from "../utils/api";
 import { Breakpoints } from "../components/utils/breakpoints";
 
@@ -56,7 +55,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         </main>
         <div className="background fixed inset-0 -z-10" />
       </SessionProvider>
-      <Breakpoints />
+      {process.env.NODE_ENV !== "production" && <Breakpoints />}
     </>
   );
 };
@@ -68,7 +67,7 @@ const Layout = ({ children }: React.PropsWithChildren) => {
     if (status === "unauthenticated" && router.pathname !== "/auth/login") {
       void router.push("/auth/login");
     }
-  }, [status]);
+  }, [router, status]);
   return (
     <>
       {status !== "loading" &&

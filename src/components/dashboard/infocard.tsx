@@ -14,7 +14,7 @@ export const InfoCard = ({
   maxValue?: React.ReactNode;
   loading?: boolean;
 }) => (
-  <Card.Wrapper className="h-full p-2">
+  <Card.Wrapper className="h-full px-2 py-4 md:p-2">
     <div className="flex h-full flex-col items-center justify-center">
       <div>{Icon}</div>
       <p

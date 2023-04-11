@@ -16,7 +16,7 @@ const NetworkDevices: NextPage = () => {
     if (!searchValue) {
       setFilteredData(networkDevicesQuery.data);
     }
-  }, [networkDevicesQuery.data]);
+  }, [networkDevicesQuery.data, searchValue]);
 
   return (
     <PageContent
