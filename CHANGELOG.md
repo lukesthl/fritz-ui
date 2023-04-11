@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/lukesthl/fritz-ui/compare/v1.0.3...v1.0.4) (2023-04-11)
+
+
+### Bug Fixes
+
+* dependency version bump, dashboard mobile responsive ([db86baf](https://github.com/lukesthl/fritz-ui/commit/db86baf9e5159bd5706bc897cc33a97370b856e4))
+
 ## [1.0.3](https://github.com/lukesthl/fritz-ui/compare/v1.0.2...v1.0.3) (2023-04-10)
 
 
