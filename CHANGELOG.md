@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/lukesthl/fritz-ui/compare/v1.0.4...v1.0.5) (2023-04-11)
+
+
+### Bug Fixes
+
+* copy edge-chunks ([1b9e24e](https://github.com/lukesthl/fritz-ui/commit/1b9e24e5cde96186ff3d8e57fe04b3e7ae88ed40))
+
 ## [1.0.4](https://github.com/lukesthl/fritz-ui/compare/v1.0.3...v1.0.4) (2023-04-11)
 
 
