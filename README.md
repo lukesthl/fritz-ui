@@ -21,6 +21,7 @@ https://user-images.githubusercontent.com/44963006/230889693-20225732-0f8f-43a3-
 
 - Dashboard with Router, SmartHome Device Stats
 - Mobile Responsive
+- PWA Support
 - All your network devices in one list
 - SmartHome Devices with current temperature, battery status and more
 - Login with your fritzbox user credential
