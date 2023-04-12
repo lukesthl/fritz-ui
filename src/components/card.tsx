@@ -25,7 +25,7 @@ const Header = ({
   ...props
 }: React.ComponentProps<"div">) => (
   <div className={cn("bg-white/10 px-4 py-3.5 sm:px-6", className)} {...props}>
-    <h3 className="text-lg font-medium leading-6 text-white/90">{children}</h3>
+    <h2 className="text-lg font-medium leading-6 text-white/90">{children}</h2>
   </div>
 );
 

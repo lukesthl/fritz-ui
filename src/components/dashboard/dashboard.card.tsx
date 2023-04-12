@@ -14,7 +14,7 @@ export const DashboardCard = ({
   <Card.Wrapper className="h-full">
     <Card.Header>{title}</Card.Header>
     <Card.Content className="h-full">
-      <dl className="h-full">
+      <div className="h-full">
         <div
           className={cn(
             "max-w-full whitespace-pre-wrap border-y border-white/20 py-5 pr-4 font-mono text-sm text-white/70 sm:gap-4 sm:pr-6",
@@ -47,7 +47,7 @@ export const DashboardCard = ({
             />
           )}
         </div>
-      </dl>
+      </div>
     </Card.Content>
   </Card.Wrapper>
 );

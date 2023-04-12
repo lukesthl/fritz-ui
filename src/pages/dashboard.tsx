@@ -1,10 +1,6 @@
 import { type NextPage } from "next";
-import { BandwidthChart } from "../components/dashboard/bandwidth.chart";
-import { CpuChart } from "../components/dashboard/cpu.chart";
-import { CpuTempChart } from "../components/dashboard/cputemp.chart";
-import { NetworkInfoCards } from "../components/dashboard/network.infocards";
-import { SmartHomeCharts } from "../components/dashboard/smarthome.charts";
 import { PageContent } from "../components/pagecontent";
+import dynamic from "next/dynamic";
 
 const Dashboard: NextPage = () => {
   return (
@@ -12,24 +8,17 @@ const Dashboard: NextPage = () => {
       title="Dashboard"
       description="Das Dashboard bietet Ihnen in Infos über die CPU-Auslastung und die Internet-Bandbreite Ihres Routers. Darüber hinaus erhalten Sie eine Übersicht über Statistiken Ihrer Smart Home Geräte."
     >
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-6">
-        <div className="col-span-2">
-          <CpuChart />
-        </div>
-        <div className="col-span-2 md:col-span-4">
-          <BandwidthChart />
-        </div>
-        <NetworkInfoCards />
-        <div className="col-span-2 md:col-span-2">
-          <CpuChart />
-        </div>
-        <div className="col-span-2 md:col-span-2">
-          <CpuTempChart />
-        </div>
-        <SmartHomeCharts />
-      </div>
+      <DashboardContent />
     </PageContent>
   );
 };
+
+const DashboardContent = dynamic(
+  () =>
+    import("../components/dashboard/dashboard.content").then(
+      (mod) => mod.DashboardContent
+    ),
+  { ssr: false }
+);
 
 export default Dashboard;

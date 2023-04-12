@@ -1,8 +1,5 @@
-// @ts-check
-/**
- * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.
- * This is especially useful for Docker builds.
- */
+import NextPWA from "next-pwa";
+
 !process.env.SKIP_ENV_VALIDATION && (await import("./src/env/server.mjs"));
 
 /** @type {import("next").NextConfig} */
@@ -16,4 +13,9 @@ const config = {
   },
   output: "standalone",
 };
-export default config;
+
+const withPWA = NextPWA({
+  dest: "public",
+});
+
+export default withPWA(config);
