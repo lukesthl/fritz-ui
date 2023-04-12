@@ -1,3 +1,10 @@
+## [1.1.0](https://github.com/lukesthl/fritz-ui/compare/v1.0.5...v1.1.0) (2023-04-12)
+
+
+### Features
+
+* add pwa support ([12ecd6a](https://github.com/lukesthl/fritz-ui/commit/12ecd6af6de67a3c8317c8417d6ae0394cc75e0a))
+
 ## [1.0.5](https://github.com/lukesthl/fritz-ui/compare/v1.0.4...v1.0.5) (2023-04-11)
 
 
