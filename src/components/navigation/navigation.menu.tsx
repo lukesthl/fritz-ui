@@ -79,7 +79,7 @@ export const NavigationMenu = ({ children }: React.PropsWithChildren) => {
                 </DialogContent>
               </Dialog>
             </div>
-            <div className="relative overflow-hidden p-8 xl:p-24">
+            <div className="relative overflow-hidden p-8 lg:px-0 lg:pt-14 xl:p-24">
               {children}
             </div>
           </div>
