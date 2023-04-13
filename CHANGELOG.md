@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/lukesthl/fritz-ui/compare/v1.1.0...v1.1.1) (2023-04-13)
+
+
+### Bug Fixes
+
+* log errors, fix tablet size, add sw.js and workbox.js to gitignore ([cff3f15](https://github.com/lukesthl/fritz-ui/commit/cff3f15ca5d02cbc721419ccfc6677bdfc29a05e))
+
 ## [1.1.0](https://github.com/lukesthl/fritz-ui/compare/v1.0.5...v1.1.0) (2023-04-12)
 
 
