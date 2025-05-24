@@ -1,8 +1,6 @@
 import { useMediaQuery } from "react-responsive";
-import type { Config } from "tailwindcss";
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const tailwindConfig = require("../../../tailwind.config.cjs") as Config;
 import resolveConfig from "tailwindcss/resolveConfig";
+import tailwindConfig from "../../../tailwind.config.cjs";
 
 const fullConfig = resolveConfig(tailwindConfig);
 

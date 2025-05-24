@@ -27,7 +27,9 @@ export const DeviceInfoRouter = createTRPCRouter({
           success = true;
           break;
         }
-      } catch (e) {}
+      } catch (e) {
+        console.error(e);
+      }
       await new Promise((resolve) => setTimeout(resolve, 1000));
     }
     if (!success) {

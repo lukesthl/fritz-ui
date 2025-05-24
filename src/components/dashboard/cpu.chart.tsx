@@ -14,8 +14,14 @@ export const CpuChart = () => {
     index: "date",
     data: (query.data?.data.cpuutil.series.at(0) || []).map(
       (cpuUsage, index) => {
+        if (!query.data) {
+          return {
+            date: "",
+            [title]: 0,
+          };
+        }
         const date = DashboardHelper.getDateByTooComplicatedFritzboxFormat(
-          query.data!.data,
+          query.data.data,
           index,
           "cpuutil"
         );

@@ -15,8 +15,14 @@ export const CpuTempChart = () => {
     data: (query.data?.data.cputemp.series[0] || [])
       .filter((cpuTemp) => parseInt(cpuTemp) > 40)
       .map((cpuTemp, index) => {
+        if (!query.data) {
+          return {
+            date: "",
+            [title]: 0,
+          };
+        }
         const date = DashboardHelper.getDateByTooComplicatedFritzboxFormat(
-          query.data!.data,
+          query.data.data,
           index,
           "cputemp"
         );

@@ -16,26 +16,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: lts/*
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        id: pnpm-install
+      - uses: oven-sh/setup-bun@v2
         with:
-          version: 7
-          run_install: false
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+          bun-version: latest
       - name: Install dependencies
-        run: pnpm install
+        run: bun install --frozen-lockfile --production
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v2
