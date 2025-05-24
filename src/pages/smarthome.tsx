@@ -25,7 +25,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "../components/ui/tabs";
-import { api } from "../utils/api";
+import { trpc } from "../utils/api";
 
 const columns: React.ComponentProps<
   typeof Table<Device, keyof Device>
@@ -95,7 +95,7 @@ const columns: React.ComponentProps<
 ];
 
 const SmartHome: NextPage = () => {
-  const smartHomeDevicesQuery = api.smartHome.getAll.useQuery(undefined, {
+  const smartHomeDevicesQuery = trpc.smartHome.getAll.useQuery(undefined, {
     refetchInterval: 5000,
   });
   const router = useRouter();
@@ -244,7 +244,7 @@ const SmartHome: NextPage = () => {
                       <h2 className="text-xl font-semibold tracking-wide text-gray-200">
                         {group.name}
                       </h2>
-                      <span className="text-sm text-gray-300/90 !no-underline">
+                      <span className="text-sm text-gray-300/90 no-underline!">
                         {group.average.temperature &&
                           ` ⌀${(
                             group.average.temperature?.celsius / 10

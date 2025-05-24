@@ -15,7 +15,7 @@ export const SearchInput = ({
       <input
         type="text"
         className={clsx(
-          "block rounded-lg border border-white/20 bg-white/10 px-2 py-2.5 pl-9 text-sm text-white/80 focus:border-white/40 focus:outline-none focus:ring-0",
+          "block rounded-lg border border-white/20 bg-white/10 px-2 py-2.5 pl-9 text-sm text-white/80 focus:border-white/40 focus:outline-hidden focus:ring-0",
           className
         )}
         {...props}

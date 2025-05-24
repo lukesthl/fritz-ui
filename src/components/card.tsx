@@ -9,7 +9,7 @@ const Wrapper = ({
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-lg border border-white/20 shadow",
+        "overflow-hidden rounded-lg border border-white/20 shadow-sm",
         className
       )}
       {...props}

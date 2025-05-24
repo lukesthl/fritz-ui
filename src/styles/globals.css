@@ -1,6 +1,24 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@config '../../tailwind.config.cjs';
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 .dark {
   color-scheme: dark;
@@ -64,9 +82,9 @@
   --tw-shadow-colored: 0 25px 200px -20px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
     var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  @apply bg-[#191A23]/30 text-white/80 shadow-white/10 backdrop-blur-sm;
+  @apply bg-[#191A23]/30 text-[rgba(255,255,255,0.8)] shadow-[rgba(255,255,255,0.1)] backdrop-blur-xs;
 }
 
 .recharts-tooltip-wrapper * {
-  @apply border-white/20 text-white/80 !important;
+  @apply border-[rgba(255,255,255,0.2)]! text-[rgba(255,255,255,0.8)]!;
 }

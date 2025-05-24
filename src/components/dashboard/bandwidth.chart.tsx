@@ -1,8 +1,8 @@
-import { api } from "../../utils/api";
+import { trpc } from "../../utils/api";
 import { DashboardCard } from "./dashboard.card";
 
 export const BandwidthChart = () => {
-  const networkMonitorQuery = api.networkMonitor.getStats.useQuery(undefined, {
+  const networkMonitorQuery = trpc.networkMonitor.getStats.useQuery(undefined, {
     refetchInterval: 5000,
   });
   const maxDownloadBytes = networkMonitorQuery.data?.info.maxDownstream || 0;

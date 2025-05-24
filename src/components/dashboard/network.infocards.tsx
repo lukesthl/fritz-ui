@@ -1,13 +1,13 @@
 import { DownloadIcon, NetworkIcon, UploadIcon } from "lucide-react";
 import colors from "tailwindcss/colors";
-import { api } from "../../utils/api";
+import { trpc } from "../../utils/api";
 import { HomeWifiIcon } from "../icons/home-wifi";
 import { InfoCard } from "./infocard";
 
 export const NetworkInfoCards = () => {
-  const networkDevicesSize = api.networkDevices.size.useQuery();
-  const smartHomeDevicesSize = api.smartHome.size.useQuery();
-  const networkMonitorQuery = api.networkMonitor.getStats.useQuery(undefined, {
+  const networkDevicesSize = trpc.networkDevices.size.useQuery();
+  const smartHomeDevicesSize = trpc.smartHome.size.useQuery();
+  const networkMonitorQuery = trpc.networkMonitor.getStats.useQuery(undefined, {
     refetchInterval: 5000,
   });
   const networkTraffic = networkMonitorQuery.data?.currentNetworkTraffic;

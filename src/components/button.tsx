@@ -18,10 +18,10 @@ export const Button = ({
   <div>
     <button
       className={clsx(className, {
-        "inline-flex items-center space-x-1 rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm font-medium text-white/90  duration-200 ease-in-out hover:bg-white/20 focus:outline-none":
+        "inline-flex items-center space-x-1 rounded-md border border-white/20 bg-white/10 px-3 py-2 text-sm font-medium text-white/90  duration-200 ease-in-out hover:bg-white/20 focus:outline-hidden":
           type === "secondary",
         "px-8": loading && type === "secondary",
-        "rounded-md border border-none bg-black bg-gradient-to-r from-primary-500/30 to-primary-500/60 py-2.5 px-5 font-medium text-white/90 transition-colors duration-200 ease-in-out hover:bg-[#2D2E37]/20 focus:outline-none":
+        "rounded-md border border-none bg-black bg-linear-to-r from-primary-500/30 to-primary-500/60 py-2.5 px-5 font-medium text-white/90 transition-colors duration-200 ease-in-out hover:bg-[#2D2E37]/20 focus:outline-hidden":
           type === "primary",
       })}
       type={buttonType}

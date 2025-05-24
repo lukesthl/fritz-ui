@@ -41,7 +41,7 @@ const Item = ({
     <dt className="text-sm text-white/60">{firstChild}</dt>
     <dd
       className={cn("text-sm text-white/80 sm:col-span-2", {
-        "my-auto mt-1 h-3 w-16 animate-pulse rounded bg-gray-300/30 md:mt-0 md:h-1/2 md:w-32":
+        "my-auto mt-1 h-3 w-16 animate-pulse rounded-sm bg-gray-300/30 md:mt-0 md:h-1/2 md:w-32":
           loading,
         "mt-1 sm:mt-0": !loading,
       })}

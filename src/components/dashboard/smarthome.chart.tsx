@@ -1,5 +1,5 @@
 import type { IDeviceStats } from "@lukesthl/fritzbox/homeautomation/devicestats";
-import { api } from "../../utils/api";
+import { trpc } from "../../utils/api";
 import { DashboardCard } from "./dashboard.card";
 
 const displayDataType = (type: keyof IDeviceStats) =>
@@ -24,7 +24,7 @@ export const SmartHomeChart = ({
   type: keyof IDeviceStats;
   color?: React.ComponentProps<typeof DashboardCard>["colors"];
 }) => {
-  const deviceStat = api.smartHome.deviceStats.useQuery({
+  const deviceStat = trpc.smartHome.deviceStats.useQuery({
     ains,
   });
   const colors = color || [

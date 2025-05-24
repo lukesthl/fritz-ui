@@ -1,11 +1,11 @@
-import { api } from "../../utils/api";
+import { trpc } from "../../utils/api";
 import { DashboardCard } from "./dashboard.card";
 import { DashboardHelper } from "./dashboard.helper";
 
 const title = "CPU-Temperatur";
 
 export const CpuTempChart = () => {
-  const query = api.deviceInfo.getEcoStats.useQuery();
+  const query = trpc.deviceInfo.getEcoStats.useQuery();
 
   const cpuTempChart: React.ComponentProps<typeof DashboardCard> = {
     title: title,

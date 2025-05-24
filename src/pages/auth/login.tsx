@@ -74,14 +74,14 @@ const Login: NextPage = () => {
       <div className="top-[calc(50% - 1035px)] right-[calc(50% - 332px)] absolute h-[470px] w-[665px] scale-150 transform bg-[url('/grid.svg')] bg-cover" />
       <form
         onSubmit={formik.handleSubmit}
-        className="box-blur z-10 rounded-xl border-2 border-white/20 bg-[#191A23]/30 py-8 px-8 shadow-white/10 backdrop-blur-sm md:px-20 md:py-16"
+        className="box-blur z-10 rounded-xl border-2 border-white/20 bg-[#191A23]/30 py-8 px-8 shadow-white/10 backdrop-blur-xs md:px-20 md:py-16"
       >
         <div className="flex items-center justify-around">
           <div className="flex-1">
             <Logo />
           </div>
           <div className="flex flex-auto items-center justify-center">
-            <div className="h-4 w-[1px] bg-white/20" />
+            <div className="h-4 w-px bg-white/20" />
           </div>
           <span className="flex-1 font-medium text-white/80">Login</span>
         </div>

@@ -4,7 +4,6 @@ import {
   HomeIcon,
   UserIcon,
 } from "@heroicons/react/20/solid";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
 import clsx from "clsx";
 import { LogOut, NetworkIcon, X } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
@@ -19,7 +18,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { useBreakpoint } from "../utils/usebreakpoint";
 
 const navItems = [
   {
@@ -45,19 +43,16 @@ const navItems = [
 ];
 
 export const NavigationMenu = ({ children }: React.PropsWithChildren) => {
-  const { isMd } = useBreakpoint("md");
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <>
       <div className="container mx-auto h-full">
         <div className="h-full w-full justify-center">
-          {isMd && (
-            <div className="box-blur fixed inset-0 left-[max(0px,calc(50%-50rem))] right-auto top-0 w-[17.5rem] overflow-y-auto bg-[#191A23]/30 shadow-white/10 backdrop-blur-sm">
+            <div className="hidden md:block box-blur fixed inset-0 left-[max(0px,calc(50%-50rem))] right-auto top-0 w-70 overflow-y-auto bg-[#191A23]/30 shadow-white/10 backdrop-blur-xs">
               <Navigation />
             </div>
-          )}
-          <div className="flex-auto md:pl-[17.5rem]">
-            <div className="sticky top-0 z-40 h-14 bg-black/5 backdrop-blur-md">
+          <div className="flex-auto md:pl-70">
+            <div className="sticky top-0 z-40 h-14 bg-black/5 backdrop-blur-md md:hidden">
               <Dialog
                 open={menuOpen}
                 onOpenChange={(open) => setMenuOpen(open)}
@@ -74,7 +69,7 @@ export const NavigationMenu = ({ children }: React.PropsWithChildren) => {
                     </div>
                   </div>
                 </DialogTrigger>
-                <DialogContent className="box-blur shadow-white/10 backdrop-blur-sm dark:bg-[#191A23]/30">
+                <DialogContent className="box-blur shadow-white/10 backdrop-blur-xs dark:bg-[#191A23]/30">
                   <Navigation setMenuOpen={setMenuOpen} />
                 </DialogContent>
               </Dialog>
@@ -96,25 +91,25 @@ const Navigation = ({
   setMenuOpen?: (value: boolean) => void;
 }) => {
   const { data: session } = useSession();
-  const { isMd } = useBreakpoint("md");
   return (
     <div className="m-4 flex h-full flex-1 flex-col md:m-0">
       <div className="relative flex h-14 justify-between rounded-t border-l border-r border-t border-white/10 px-6 md:block md:rounded-none md:border-0 md:border-l md:px-0">
         <Link
           href="/"
-          className="flex h-full flex-shrink-0 items-center md:px-6"
-          onClick={() => void (!isMd && setMenuOpen?.(false))}
+          className="flex h-full shrink-0 items-center md:px-6"
+          onClick={() => void (setMenuOpen?.(false))}
         >
           <Logo />
         </Link>
         <div className="absolute right-0 top-0 z-10 hidden h-full py-3.5 md:flex">
-          <div className="w-[1px] bg-white/10" />
+          <div className="w-px bg-white/10" />
         </div>
-        {!isMd && (
-          <DialogPrimitive.Close className="rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-0 disabled:pointer-events-none data-[state=open]:bg-slate-100 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900 dark:data-[state=open]:bg-slate-800">
-            <X className="h-4 w-4" />
-          </DialogPrimitive.Close>
-        )}
+        <div
+          onClick={() => void (setMenuOpen?.(false))}
+          className="md:hidden rounded-xs opacity-70 transition-opacity hover:opacity-100 focus:outline-hidden focus:ring-0 disabled:pointer-events-none data-[state=open]:bg-slate-100 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900 dark:data-[state=open]:bg-slate-800"
+        >
+          <X className="h-4 w-4" />
+        </div>
       </div>
       <nav
         className="flex flex-1 flex-col rounded-b-md border-b border-l border-r border-t border-white/10 p-6 md:rounded-none md:border-b-0 md:border-t-0"
@@ -134,7 +129,7 @@ const Navigation = ({
                 }
               )}
               key={navItem.href}
-              onClick={() => void (!isMd && setMenuOpen?.(false))}
+              onClick={() => void (setMenuOpen?.(false))}
             >
               <Icon className="h-4 w-4" color={"rgb(197 203 203)"} />
               <span>{navItem.name}</span>
@@ -156,7 +151,7 @@ const Navigation = ({
           <DropdownMenuContent className="w-56 dark:border-white/10 dark:bg-[#303142]/60 dark:text-white/80">
             <DropdownMenuItem
               onClick={() => void signOut()}
-              className="cursor-pointer rounded px-3 py-2 dark:focus:bg-white/20"
+              className="cursor-pointer rounded-sm px-3 py-2 dark:focus:bg-white/20"
             >
               <LogOut className="mr-2 h-4 w-4" />
               <span>Abmelden</span>

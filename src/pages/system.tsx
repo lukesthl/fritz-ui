@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 import { PageContent } from "../components/pagecontent";
-import { api } from "../utils/api";
+import { trpc } from "../utils/api";
 import { v4 as uuidv4 } from "uuid";
 import { AreaChart } from "@tremor/react";
 import { Card } from "../components/card";
@@ -10,9 +10,9 @@ import { ArrowPathIcon } from "@heroicons/react/20/solid";
 import { cn } from "../components/utils/class.helper";
 
 const System: NextPage = () => {
-  const deviceInfoQuery = api.deviceInfo.getInfo.useQuery();
-  const ecoStatsQuery = api.deviceInfo.getEcoStats.useQuery();
-  const rebootMutation = api.deviceInfo.reboot.useMutation();
+  const deviceInfoQuery = trpc.deviceInfo.getInfo.useQuery();
+  const ecoStatsQuery = trpc.deviceInfo.getEcoStats.useQuery();
+  const rebootMutation = trpc.deviceInfo.reboot.useMutation();
   return (
     <PageContent
       title="Einstellungen"
@@ -28,7 +28,7 @@ const System: NextPage = () => {
                 onClick={() => {
                   rebootMutation.mutate();
                 }}
-                loading={rebootMutation.isLoading}
+                loading={rebootMutation.isPending}
               >
                 <span>Neu starten</span>
                 <ArrowPathIcon className="h-4 w-4" />
@@ -221,8 +221,8 @@ const System: NextPage = () => {
                         })
                       : [...Array<unknown>(20)].map(() => (
                           <tr key={uuidv4()} className="my-3 flex w-full">
-                            <td className="mr-4 h-4 w-32 animate-pulse rounded bg-gray-300/30" />
-                            <td className="h-4 w-[400px] animate-pulse rounded  bg-gray-300/30" />
+                            <td className="mr-4 h-4 w-32 animate-pulse rounded-sm bg-gray-300/30" />
+                            <td className="h-4 w-[400px] animate-pulse rounded-sm  bg-gray-300/30" />
                           </tr>
                         ))}
                   </tbody>
