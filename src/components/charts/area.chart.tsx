@@ -3,8 +3,8 @@
 
 "use client";
 
-import React from "react";
 import { RiArrowLeftSLine, RiArrowRightSLine } from "@remixicon/react";
+import React from "react";
 import {
   Area,
   CartesianGrid,
@@ -20,6 +20,8 @@ import {
 } from "recharts";
 import type { AxisDomain } from "recharts/types/util/types";
 
+import { cx } from "class-variance-authority";
+import { useOnWindowResize } from "../utils/useOnWindowResize";
 import {
   AvailableChartColors,
   constructCategoryColors,
@@ -28,9 +30,6 @@ import {
   hasOnlyOneValueForKey,
   type AvailableChartColorsKeys,
 } from "./chartUtils";
-import { useOnWindowResize } from "../utils/useOnWindowResize";
-import { cn } from "../utils/class.helper";
-import { cx } from "class-variance-authority";
 
 //#region Legend
 
