@@ -12,6 +12,7 @@
         "@radix-ui/react-dropdown-menu": "^2.1.15",
         "@radix-ui/react-tabs": "^1.1.12",
         "@remixicon/react": "^4.6.0",
+        "@tailwindcss/postcss": "^4.1.7",
         "@tanstack/react-query": "^5.77.0",
         "@total-typescript/ts-reset": "^0.6.1",
         "@trpc/client": "^11.1.2",
@@ -35,6 +36,7 @@
         "recharts": "^2.15.3",
         "superjson": "2.2.2",
         "tailwind-merge": "^3.3.0",
+        "tailwindcss": "^4.1.7",
         "tailwindcss-animate": "^1.0.7",
         "uuid": "^11.1.0",
         "xmlbuilder": "^15.1.1",
@@ -45,7 +47,6 @@
         "@ryansonshine/cz-conventional-changelog": "^3.3.4",
         "@semantic-release/changelog": "^6.0.3",
         "@semantic-release/git": "^10.0.1",
-        "@tailwindcss/postcss": "^4.1.7",
         "@types/node": "^22.15.21",
         "@types/prettier": "^3.0.0",
         "@types/react": "^19.1.5",
@@ -56,7 +57,6 @@
         "prettier": "^3.5.3",
         "prettier-plugin-tailwindcss": "^0.6.11",
         "semantic-release": "^24.2.5",
-        "tailwindcss": "^4.1.7",
         "typescript": "^5.8.3",
       },
     },
@@ -2609,8 +2609,6 @@
     "pkg-dir/find-up": ["find-up@4.1.0", "", { "dependencies": { "locate-path": "^5.0.0", "path-exists": "^4.0.0" } }, "sha512-PpOwAdQ/YlXQ2vj8a3h8IipDuYRi3wceVQQGYWxNINccq40Anw7BlsEXCMbt1Zt+OLA6Fq9suIpIWD0OsnISlw=="],
 
     "prop-types/react-is": ["react-is@16.13.1", "", {}, "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="],
-
-    "randombytes/safe-buffer": ["safe-buffer@5.2.1", "", {}, "sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ=="],
 
     "rc/strip-json-comments": ["strip-json-comments@2.0.1", "", {}, "sha512-4gB8na07fecVVkOI6Rs4e7T6NOTki5EmL7TUduTs6bu3EdnSycntVJ4re8kgZA+wx9IueI2Y11bfbgwtzuE0KQ=="],
 
