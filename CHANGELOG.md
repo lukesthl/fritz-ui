@@ -6,6 +6,17 @@
 
 ### Dependencies and Other Build Updates
 
+* fix docker deploy ([552fc0d](https://github.com/lukesthl/fritz-ui/commit/552fc0d0ef44f57270e2809533e1abda7c71602e))
+* update Dockerfile for bun install ([078bda1](https://github.com/lukesthl/fritz-ui/commit/078bda11435bd6c95b840b79666eec8f7ac4c78c))
+
+## [1.1.2](https://github.com/lukesthl/fritz-ui/compare/v1.1.1...v1.1.2) (2025-05-29)
+
+### Bug Fixes
+
+* nextjs version ([e8f16c6](https://github.com/lukesthl/fritz-ui/commit/e8f16c654806f3d0bd471b6e7f70943a77e8e6f8))
+
+### Dependencies and Other Build Updates
+
 * update Dockerfile for bun install ([078bda1](https://github.com/lukesthl/fritz-ui/commit/078bda11435bd6c95b840b79666eec8f7ac4c78c))
 
 ## [1.1.2](https://github.com/lukesthl/fritz-ui/compare/v1.1.1...v1.1.2) (2025-05-29)
