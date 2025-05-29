@@ -1,4 +1,4 @@
-import { trpc } from "../../utils/api";
+import { trpc } from "../../lib/api";
 import { DashboardCard } from "./dashboard.card";
 import { DashboardHelper } from "./dashboard.helper";
 
@@ -24,7 +24,7 @@ export const CpuTempChart = () => {
         const date = DashboardHelper.getDateByTooComplicatedFritzboxFormat(
           query.data.data,
           index,
-          "cputemp"
+          "cputemp",
         );
         const dateToShow = Intl.DateTimeFormat("de", {
           timeStyle: "short",

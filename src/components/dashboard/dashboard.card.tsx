@@ -1,5 +1,5 @@
-import { AreaChart } from "@tremor/react";
 import { Card } from "../card";
+import { AreaChart } from "../charts/area.chart";
 import { cn } from "../utils/class.helper";
 
 export const DashboardCard = ({
@@ -17,10 +17,10 @@ export const DashboardCard = ({
       <div className="h-full">
         <div
           className={cn(
-            "max-w-full whitespace-pre-wrap border-y border-white/20 py-5 pr-4 font-mono text-sm text-white/70 sm:gap-4 sm:pr-6",
+            "max-w-full border-y border-white/20 py-5 pr-4 font-mono text-sm whitespace-pre-wrap text-white/70 sm:gap-4 sm:pr-6",
             {
               "h-full": !loading,
-            }
+            },
           )}
         >
           {loading ? (
@@ -30,7 +30,6 @@ export const DashboardCard = ({
               </span>
               <AreaChart
                 maxValue={100}
-                colors={["indigo"]}
                 valueFormatter={(value) => `${value}%`}
                 className={cn("mt-1 h-72", className)}
                 {...chartProps}
@@ -40,7 +39,6 @@ export const DashboardCard = ({
           ) : (
             <AreaChart
               maxValue={100}
-              colors={["indigo"]}
               valueFormatter={(value) => `${value}%`}
               className={cn("mt-1 h-72", className)}
               {...chartProps}

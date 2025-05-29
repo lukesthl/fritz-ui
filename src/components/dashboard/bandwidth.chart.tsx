@@ -1,4 +1,4 @@
-import { trpc } from "../../utils/api";
+import { trpc } from "../../lib/api";
 import { DashboardCard } from "./dashboard.card";
 
 export const BandwidthChart = () => {
@@ -31,14 +31,14 @@ export const BandwidthChart = () => {
           Math.min(
             maxUploadBytes,
             (uploadDefaultBytes + uploadImportantBytes + uploadRealtimeBytes) /
-              100
+              100,
           ) / 1000;
         return {
           date: dateToShow,
           Downstream: Downstream.toFixed(2),
           Upstream: Upstream.toFixed(2),
         };
-      }
+      },
     ),
     valueFormatter: (value) => `${value} Mbit/s`,
     maxValue: Math.max(maxDownloadBytes / 1000, maxUploadBytes / 1000),

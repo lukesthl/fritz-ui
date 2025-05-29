@@ -1,6 +1,6 @@
 import { DownloadIcon, NetworkIcon, UploadIcon } from "lucide-react";
 import colors from "tailwindcss/colors";
-import { trpc } from "../../utils/api";
+import { trpc } from "../../lib/api";
 import { HomeWifiIcon } from "../icons/home-wifi";
 import { InfoCard } from "./infocard";
 
@@ -29,7 +29,7 @@ export const NetworkInfoCards = () => {
             latestNetworkTraffic.uploadImportantBytes +
             latestNetworkTraffic.uploadRealtimeBytes) /
             100
-        : 0
+        : 0,
     ) / 1000
   ).toFixed(2);
   return (

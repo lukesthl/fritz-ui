@@ -1,5 +1,5 @@
 import { DeviceType } from "@lukesthl/fritzbox/homeautomation/smarthome";
-import { trpc } from "../../utils/api";
+import { trpc } from "../../lib/api";
 import { SmartHomeChart } from "./smarthome.chart";
 
 export const SmartHomeCharts = () => {

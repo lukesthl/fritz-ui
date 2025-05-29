@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { NavigationMenu } from "../components/navigation/navigation.menu";
 import "../styles/globals.css";
-import {  queryClient, trpc } from "../utils/api";
+import { queryClient, trpc } from "../lib/api";
 import { Breakpoints } from "../components/utils/breakpoints";
 import { QueryClientProvider } from "@tanstack/react-query";
 
@@ -62,14 +62,14 @@ const MyApp: AppType<{ session: Session | null }> = ({
         />
       </Head>
       <QueryClientProvider client={queryClient}>
-      <SessionProvider session={session}>
-        <main className="min-h-screen text-white antialiased">
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </main>
-        <div className="background fixed inset-0 -z-10" />
-      </SessionProvider>
+        <SessionProvider session={session}>
+          <main className="min-h-screen text-white antialiased">
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </main>
+          <div className="background fixed inset-0 -z-10" />
+        </SessionProvider>
       </QueryClientProvider>
       {process.env.NODE_ENV !== "production" && <Breakpoints />}
     </>

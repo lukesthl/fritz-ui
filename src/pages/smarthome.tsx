@@ -25,7 +25,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "../components/ui/tabs";
-import { trpc } from "../utils/api";
+import { trpc } from "../lib/api";
 
 const columns: React.ComponentProps<
   typeof Table<Device, keyof Device>
@@ -86,7 +86,7 @@ const columns: React.ComponentProps<
       return (
         <div className="flex items-center space-x-1">
           {power && <p>{power} W</p>}
-          {power && celsius && <p className="text-xs ">/</p>}
+          {power && celsius && <p className="text-xs">/</p>}
           {celsius && <p>{celsius} °C</p>}
         </div>
       );
@@ -108,10 +108,10 @@ const SmartHome: NextPage = () => {
   }
   const [selectedTab, setSelectedTab] = useState(activeTab);
   const [filteredDeviceData, setFilteredDeviceData] = useState(
-    smartHomeDevicesQuery.data?.devices || []
+    smartHomeDevicesQuery.data?.devices || [],
   );
   const [filteredGroupData, setFilteredGroupData] = useState(
-    smartHomeDevicesQuery.data?.deviceGroups || []
+    smartHomeDevicesQuery.data?.deviceGroups || [],
   );
   const [searchValue, setSearchValue] = useState<string | null>(null);
 
@@ -139,7 +139,7 @@ const SmartHome: NextPage = () => {
             setSearchValue(null);
             setFilteredDeviceData(smartHomeDevicesQuery.data?.devices || []);
             setFilteredGroupData(
-              smartHomeDevicesQuery.data?.deviceGroups || []
+              smartHomeDevicesQuery.data?.deviceGroups || [],
             );
             setSelectedTab(value);
           }}
@@ -167,10 +167,10 @@ const SmartHome: NextPage = () => {
               onClear={() => {
                 setSearchValue(null);
                 setFilteredDeviceData(
-                  smartHomeDevicesQuery.data?.devices || []
+                  smartHomeDevicesQuery.data?.devices || [],
                 );
                 setFilteredGroupData(
-                  smartHomeDevicesQuery.data?.deviceGroups || []
+                  smartHomeDevicesQuery.data?.deviceGroups || [],
                 );
               }}
               onChange={(event) => {
@@ -183,18 +183,18 @@ const SmartHome: NextPage = () => {
                   ) {
                     const fuse = new Fuse(smartHomeDevicesQuery.data.devices, {
                       keys: Object.keys(
-                        smartHomeDevicesQuery.data.devices[0] || {}
+                        smartHomeDevicesQuery.data.devices[0] || {},
                       ),
                       shouldSort: true,
                       minMatchCharLength: 2,
                     });
                     const searchResult = fuse.search(event.target.value);
                     setFilteredDeviceData(
-                      searchResult.map((result) => result.item)
+                      searchResult.map((result) => result.item),
                     );
                   } else {
                     setFilteredDeviceData(
-                      smartHomeDevicesQuery.data?.devices || []
+                      smartHomeDevicesQuery.data?.devices || [],
                     );
                   }
                 } else {
@@ -207,19 +207,19 @@ const SmartHome: NextPage = () => {
                       smartHomeDevicesQuery.data.deviceGroups,
                       {
                         keys: Object.keys(
-                          smartHomeDevicesQuery.data.deviceGroups[0] || {}
+                          smartHomeDevicesQuery.data.deviceGroups[0] || {},
                         ),
                         shouldSort: true,
                         minMatchCharLength: 2,
-                      }
+                      },
                     );
                     const searchResult = fuse.search(event.target.value);
                     setFilteredGroupData(
-                      searchResult.map((result) => result.item)
+                      searchResult.map((result) => result.item),
                     );
                   } else {
                     setFilteredGroupData(
-                      smartHomeDevicesQuery.data?.deviceGroups || []
+                      smartHomeDevicesQuery.data?.deviceGroups || [],
                     );
                   }
                 }

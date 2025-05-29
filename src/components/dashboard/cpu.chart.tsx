@@ -1,4 +1,4 @@
-import { trpc } from "../../utils/api";
+import { trpc } from "../../lib/api";
 import { DashboardCard } from "./dashboard.card";
 import { DashboardHelper } from "./dashboard.helper";
 
@@ -23,7 +23,7 @@ export const CpuChart = () => {
         const date = DashboardHelper.getDateByTooComplicatedFritzboxFormat(
           query.data.data,
           index,
-          "cpuutil"
+          "cpuutil",
         );
         const dateToShow = Intl.DateTimeFormat("de", {
           timeStyle: "short",
@@ -32,7 +32,7 @@ export const CpuChart = () => {
           date: dateToShow,
           [title]: cpuUsage,
         };
-      }
+      },
     ),
   };
   return <DashboardCard {...cpuPercentageChart} />;

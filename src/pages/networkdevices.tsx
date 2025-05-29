@@ -4,7 +4,7 @@ import { PageContent } from "../components/pagecontent";
 import { SearchInput } from "../components/search.input";
 import { Table } from "../components/table";
 import Fuse from "fuse.js";
-import { trpc } from "../utils/api";
+import { trpc } from "../lib/api";
 import { useEffect, useState } from "react";
 
 const NetworkDevices: NextPage = () => {
