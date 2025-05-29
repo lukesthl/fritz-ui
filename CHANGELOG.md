@@ -1,3 +1,14 @@
+## [1.1.3](https://github.com/lukesthl/fritz-ui/compare/v1.1.2...v1.1.3) (2025-05-29)
+
+### Bug Fixes
+
+* relase ([6bc9d04](https://github.com/lukesthl/fritz-ui/commit/6bc9d043505d648d3e105846e4141222983f05e3))
+
+### Dependencies and Other Build Updates
+
+* test node version ([e6ff23b](https://github.com/lukesthl/fritz-ui/commit/e6ff23bf7abbf0dd952d07983e5559979d7993bd))
+* try macos ([26648cc](https://github.com/lukesthl/fritz-ui/commit/26648cc25c256385f5796482c6f82d709fddeba5))
+
 ## [1.1.2](https://github.com/lukesthl/fritz-ui/compare/v1.1.1...v1.1.2) (2025-05-29)
 
 ### Bug Fixes
