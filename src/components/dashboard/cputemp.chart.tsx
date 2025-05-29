@@ -1,11 +1,11 @@
-import { api } from "../../utils/api";
+import { trpc } from "../../lib/api";
 import { DashboardCard } from "./dashboard.card";
 import { DashboardHelper } from "./dashboard.helper";
 
 const title = "CPU-Temperatur";
 
 export const CpuTempChart = () => {
-  const query = api.deviceInfo.getEcoStats.useQuery();
+  const query = trpc.deviceInfo.getEcoStats.useQuery();
 
   const cpuTempChart: React.ComponentProps<typeof DashboardCard> = {
     title: title,
@@ -15,10 +15,16 @@ export const CpuTempChart = () => {
     data: (query.data?.data.cputemp.series[0] || [])
       .filter((cpuTemp) => parseInt(cpuTemp) > 40)
       .map((cpuTemp, index) => {
+        if (!query.data) {
+          return {
+            date: "",
+            [title]: 0,
+          };
+        }
         const date = DashboardHelper.getDateByTooComplicatedFritzboxFormat(
-          query.data!.data,
+          query.data.data,
           index,
-          "cputemp"
+          "cputemp",
         );
         const dateToShow = Intl.DateTimeFormat("de", {
           timeStyle: "short",

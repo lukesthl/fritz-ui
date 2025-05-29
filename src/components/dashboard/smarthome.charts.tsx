@@ -1,9 +1,9 @@
 import { DeviceType } from "@lukesthl/fritzbox/homeautomation/smarthome";
-import { api } from "../../utils/api";
+import { trpc } from "../../lib/api";
 import { SmartHomeChart } from "./smarthome.chart";
 
 export const SmartHomeCharts = () => {
-  const smartHomeDevices = api.smartHome.getAll.useQuery();
+  const smartHomeDevices = trpc.smartHome.getAll.useQuery();
   return (
     <>
       {smartHomeDevices.data?.devices.map((device) => (

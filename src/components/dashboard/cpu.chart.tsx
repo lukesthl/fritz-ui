@@ -1,11 +1,11 @@
-import { api } from "../../utils/api";
+import { trpc } from "../../lib/api";
 import { DashboardCard } from "./dashboard.card";
 import { DashboardHelper } from "./dashboard.helper";
 
 const title = "CPU-Auslastung";
 
 export const CpuChart = () => {
-  const query = api.deviceInfo.getEcoStats.useQuery();
+  const query = trpc.deviceInfo.getEcoStats.useQuery();
 
   const cpuPercentageChart: React.ComponentProps<typeof DashboardCard> = {
     title: title,
@@ -14,10 +14,16 @@ export const CpuChart = () => {
     index: "date",
     data: (query.data?.data.cpuutil.series.at(0) || []).map(
       (cpuUsage, index) => {
+        if (!query.data) {
+          return {
+            date: "",
+            [title]: 0,
+          };
+        }
         const date = DashboardHelper.getDateByTooComplicatedFritzboxFormat(
-          query.data!.data,
+          query.data.data,
           index,
-          "cpuutil"
+          "cpuutil",
         );
         const dateToShow = Intl.DateTimeFormat("de", {
           timeStyle: "short",
@@ -26,7 +32,7 @@ export const CpuChart = () => {
           date: dateToShow,
           [title]: cpuUsage,
         };
-      }
+      },
     ),
   };
   return <DashboardCard {...cpuPercentageChart} />;

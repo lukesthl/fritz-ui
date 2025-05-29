@@ -4,11 +4,11 @@ import { PageContent } from "../components/pagecontent";
 import { SearchInput } from "../components/search.input";
 import { Table } from "../components/table";
 import Fuse from "fuse.js";
-import { api } from "../utils/api";
+import { trpc } from "../lib/api";
 import { useEffect, useState } from "react";
 
 const NetworkDevices: NextPage = () => {
-  const networkDevicesQuery = api.networkDevices.getAll.useQuery();
+  const networkDevicesQuery = trpc.networkDevices.getAll.useQuery();
   const [filteredData, setFilteredData] = useState(networkDevicesQuery.data);
   const [searchValue, setSearchValue] = useState<string | null>(null);
 

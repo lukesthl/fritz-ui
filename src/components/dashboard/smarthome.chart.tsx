@@ -1,17 +1,17 @@
 import type { IDeviceStats } from "@lukesthl/fritzbox/homeautomation/devicestats";
-import { api } from "../../utils/api";
+import { trpc } from "../../lib/api";
 import { DashboardCard } from "./dashboard.card";
 
 const displayDataType = (type: keyof IDeviceStats) =>
   type === "temperature"
     ? "°C"
     : type === "voltage"
-    ? "V"
-    : type === "power"
-    ? "W"
-    : type === "energy"
-    ? "kWh"
-    : "";
+      ? "V"
+      : type === "power"
+        ? "W"
+        : type === "energy"
+          ? "kWh"
+          : "";
 
 export const SmartHomeChart = ({
   title,
@@ -24,17 +24,17 @@ export const SmartHomeChart = ({
   type: keyof IDeviceStats;
   color?: React.ComponentProps<typeof DashboardCard>["colors"];
 }) => {
-  const deviceStat = api.smartHome.deviceStats.useQuery({
+  const deviceStat = trpc.smartHome.deviceStats.useQuery({
     ains,
   });
   const colors = color || [
     type === "temperature"
       ? "red"
       : type === "power"
-      ? "orange"
-      : type === "voltage"
-      ? "lime"
-      : "rose",
+        ? "orange"
+        : type === "voltage"
+          ? "lime"
+          : "rose",
   ];
   const data = deviceStat.data || [];
   const min = Math.min(
@@ -43,20 +43,20 @@ export const SmartHomeChart = ({
         (type === "temperature"
           ? d?.Temperatur
           : type === "power"
-          ? d.Leistung
-          : type === "voltage"
-          ? d.Volt
-          : d.Energie) || 0 - 4
-    )
+            ? d.Leistung
+            : type === "voltage"
+              ? d.Volt
+              : d.Energie) || 0 - 4,
+    ),
   );
   const categories =
     type === "temperature"
       ? ["Temperatur"]
       : type === "power"
-      ? ["Leistung"]
-      : type === "voltage"
-      ? ["Volt"]
-      : ["Energie"];
+        ? ["Leistung"]
+        : type === "voltage"
+          ? ["Volt"]
+          : ["Energie"];
   const filteredData = data
     .map((stat) =>
       type === "temperature"
@@ -67,34 +67,34 @@ export const SmartHomeChart = ({
             }).format(stat.date),
           }
         : type === "power"
-        ? {
-            Leistung: stat.Leistung,
-            date: Intl.DateTimeFormat("de", {
-              timeStyle: "short",
-            }).format(stat.date),
-          }
-        : type === "voltage"
-        ? {
-            Volt: stat.Volt,
-            date: Intl.DateTimeFormat("de", {
-              timeStyle: "short",
-            }).format(stat.date),
-          }
-        : {
-            Energie: stat.Energie,
-            date: Intl.DateTimeFormat("de", {
-              timeStyle: "short",
-            }).format(stat.date),
-          }
+          ? {
+              Leistung: stat.Leistung,
+              date: Intl.DateTimeFormat("de", {
+                timeStyle: "short",
+              }).format(stat.date),
+            }
+          : type === "voltage"
+            ? {
+                Volt: stat.Volt,
+                date: Intl.DateTimeFormat("de", {
+                  timeStyle: "short",
+                }).format(stat.date),
+              }
+            : {
+                Energie: stat.Energie,
+                date: Intl.DateTimeFormat("de", {
+                  timeStyle: "short",
+                }).format(stat.date),
+              },
     )
     .filter((stat) =>
       type === "temperature"
         ? stat.Temperatur
         : type === "power"
-        ? stat.Leistung
-        : type === "voltage"
-        ? stat.Volt
-        : stat.Energie
+          ? stat.Leistung
+          : type === "voltage"
+            ? stat.Volt
+            : stat.Energie,
     );
   const chart: React.ComponentProps<typeof DashboardCard> = {
     title,
@@ -109,11 +109,11 @@ export const SmartHomeChart = ({
           ((type === "temperature"
             ? d?.Temperatur
             : type === "power"
-            ? d.Leistung
-            : type === "voltage"
-            ? d.Volt
-            : d.Energie) || 0) + 4
-      )
+              ? d.Leistung
+              : type === "voltage"
+                ? d.Volt
+                : d.Energie) || 0) + 4,
+      ),
     ),
     minValue:
       (min > 0 && type !== "voltage") || type === "energy" || type === "power"

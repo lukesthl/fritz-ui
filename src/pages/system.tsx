@@ -1,18 +1,18 @@
 import { type NextPage } from "next";
 import { PageContent } from "../components/pagecontent";
-import { api } from "../utils/api";
+import { trpc } from "../lib/api";
 import { v4 as uuidv4 } from "uuid";
-import { AreaChart } from "@tremor/react";
 import { Card } from "../components/card";
 import { List } from "../components/list";
 import { Button } from "../components/button";
 import { ArrowPathIcon } from "@heroicons/react/20/solid";
 import { cn } from "../components/utils/class.helper";
+import { AreaChart } from "../components/charts/area.chart";
 
 const System: NextPage = () => {
-  const deviceInfoQuery = api.deviceInfo.getInfo.useQuery();
-  const ecoStatsQuery = api.deviceInfo.getEcoStats.useQuery();
-  const rebootMutation = api.deviceInfo.reboot.useMutation();
+  const deviceInfoQuery = trpc.deviceInfo.getInfo.useQuery();
+  const ecoStatsQuery = trpc.deviceInfo.getEcoStats.useQuery();
+  const rebootMutation = trpc.deviceInfo.reboot.useMutation();
   return (
     <PageContent
       title="Einstellungen"
@@ -28,7 +28,7 @@ const System: NextPage = () => {
                 onClick={() => {
                   rebootMutation.mutate();
                 }}
-                loading={rebootMutation.isLoading}
+                loading={rebootMutation.isPending}
               >
                 <span>Neu starten</span>
                 <ArrowPathIcon className="h-4 w-4" />
@@ -53,7 +53,7 @@ const System: NextPage = () => {
                 Online seit
                 {deviceInfoQuery.data?.NewUpTime
                   ? `${(deviceInfoQuery.data.NewUpTime / 60 / 60 / 24).toFixed(
-                      0
+                      0,
                     )} Tagen`
                   : 0}
               </List.Item>
@@ -64,7 +64,7 @@ const System: NextPage = () => {
           <Card.Header>CPU-Auslastung</Card.Header>
           <Card.Content>
             <dl>
-              <div className="max-w-full whitespace-pre-wrap border-y border-white/20 px-4 py-5 font-mono text-sm text-white/70 sm:gap-4 sm:px-6">
+              <div className="max-w-full border-y border-white/20 px-4 py-5 font-mono text-sm whitespace-pre-wrap text-white/70 sm:gap-4 sm:px-6">
                 {ecoStatsQuery.isLoading ? (
                   <>
                     <span className="hidden">
@@ -131,7 +131,7 @@ const System: NextPage = () => {
           <Card.Header>CPU-Temperatur</Card.Header>
           <Card.Content>
             <dl>
-              <div className="max-w-full whitespace-pre-wrap border-y border-white/20 px-4 py-5 font-mono text-sm text-white/70 sm:gap-4 sm:px-6">
+              <div className="max-w-full border-y border-white/20 px-4 py-5 font-mono text-sm whitespace-pre-wrap text-white/70 sm:gap-4 sm:px-6">
                 {ecoStatsQuery.isLoading ? (
                   <>
                     <span className="hidden">
@@ -201,18 +201,18 @@ const System: NextPage = () => {
           <Card.Header>Logs</Card.Header>
           <Card.Content className="max-h-[500px] overflow-y-auto">
             <dl>
-              <div className="whitespace-pre-wrap border-y border-white/20 px-4 py-5 font-mono text-sm text-white/70 sm:gap-4 sm:px-6">
+              <div className="border-y border-white/20 px-4 py-5 font-mono text-sm whitespace-pre-wrap text-white/70 sm:gap-4 sm:px-6">
                 <table className="table-auto">
                   <tbody>
                     {!deviceInfoQuery.isLoading
                       ? deviceInfoQuery.data?.NewDeviceLog.match(
-                          /[^\r\n]+/g
+                          /[^\r\n]+/g,
                         )?.map((logPerLine) => {
                           const date = logPerLine.slice(0, 17);
                           const logEntry = logPerLine.slice(18, -1);
                           return (
                             <tr key={uuidv4()}>
-                              <td className="whitespace-nowrap align-baseline font-semibold text-white/80">
+                              <td className="align-baseline font-semibold whitespace-nowrap text-white/80">
                                 <span className="mr-2">{date}</span>
                               </td>
                               <td>{logEntry}</td>
@@ -221,8 +221,8 @@ const System: NextPage = () => {
                         })
                       : [...Array<unknown>(20)].map(() => (
                           <tr key={uuidv4()} className="my-3 flex w-full">
-                            <td className="mr-4 h-4 w-32 animate-pulse rounded bg-gray-300/30" />
-                            <td className="h-4 w-[400px] animate-pulse rounded  bg-gray-300/30" />
+                            <td className="mr-4 h-4 w-32 animate-pulse rounded-sm bg-gray-300/30" />
+                            <td className="h-4 w-[400px] animate-pulse rounded-sm bg-gray-300/30" />
                           </tr>
                         ))}
                   </tbody>

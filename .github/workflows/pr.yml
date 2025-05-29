@@ -7,31 +7,20 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [lts/*]
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
-        id: pnpm-install
+      - uses: oven-sh/setup-bun@v2
         with:
-          version: 7
-          run_install: false
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        shell: bash
-        run: |
-          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
-      - uses: actions/cache@v3
-        name: Setup pnpm cache
-        with:
-          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+          bun-version: latest
       - name: Install dependencies
-        run: pnpm install
-      - run: npm run build --if-present
+        run: bun install --frozen-lockfile --production
+      - name: Build
+        run: npm run build --if-present
+        env:
+          NEXTAUTH_SECRET: "dummy-secret-for-pr-build"
+          NEXTAUTH_URL: "http://localhost:3000"

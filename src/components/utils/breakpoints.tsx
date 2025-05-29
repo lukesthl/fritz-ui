@@ -1,5 +1,5 @@
 export const Breakpoints = () => (
-  <div className="fixed bottom-0 right-0 m-2 flex items-center rounded border border-gray-400/20 bg-gray-300/20 p-2 text-sm">
+  <div className="fixed bottom-0 right-0 m-2 flex items-center rounded-sm border border-gray-400/20 bg-gray-300/20 p-2 text-sm">
     Current breakpoint
     <span className="ml-1 sm:hidden md:hidden lg:hidden xl:hidden">
       default (&lt; 640px)

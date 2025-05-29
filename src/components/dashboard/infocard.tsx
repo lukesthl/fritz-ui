@@ -19,7 +19,7 @@ export const InfoCard = ({
       <div>{Icon}</div>
       <p
         className={cn("text-center text-2xl font-semibold text-white/95", {
-          "my-3 h-3 w-16 animate-pulse rounded bg-gray-300/30 md:h-4 md:w-14":
+          "my-3 h-3 w-16 animate-pulse rounded-sm bg-gray-300/30 md:h-4 md:w-14":
             loading,
           "mt-1": !loading,
         })}

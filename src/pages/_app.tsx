@@ -6,8 +6,9 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import { NavigationMenu } from "../components/navigation/navigation.menu";
 import "../styles/globals.css";
-import { api } from "../utils/api";
+import { queryClient, trpc } from "../lib/api";
 import { Breakpoints } from "../components/utils/breakpoints";
+import { QueryClientProvider } from "@tanstack/react-query";
 
 const MyApp: AppType<{ session: Session | null }> = ({
   Component,
@@ -60,14 +61,16 @@ const MyApp: AppType<{ session: Session | null }> = ({
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
         />
       </Head>
-      <SessionProvider session={session}>
-        <main className="min-h-screen text-white antialiased">
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </main>
-        <div className="background fixed inset-0 -z-10" />
-      </SessionProvider>
+      <QueryClientProvider client={queryClient}>
+        <SessionProvider session={session}>
+          <main className="min-h-screen text-white antialiased">
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </main>
+          <div className="background fixed inset-0 -z-10" />
+        </SessionProvider>
+      </QueryClientProvider>
       {process.env.NODE_ENV !== "production" && <Breakpoints />}
     </>
   );
@@ -93,4 +96,4 @@ const Layout = ({ children }: React.PropsWithChildren) => {
   );
 };
 
-export default api.withTRPC(MyApp);
+export default trpc.withTRPC(MyApp);

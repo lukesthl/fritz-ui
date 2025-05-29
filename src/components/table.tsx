@@ -61,7 +61,7 @@ export const Table = <T, K extends keyof T>({
   return (
     <div
       className={clsx(
-        "relative overflow-x-auto rounded-lg border border-white/20 shadow",
+        "relative overflow-x-auto rounded-lg border border-white/20 shadow-sm",
         className
       )}
     >
@@ -139,7 +139,7 @@ export const Table = <T, K extends keyof T>({
                       className="whitespace-nowrap px-6 py-4"
                       key={column.key.toString()}
                     >
-                      <span className="inline-flex h-2.5 w-full animate-pulse rounded bg-gray-300/30" />
+                      <span className="inline-flex h-2.5 w-full animate-pulse rounded-sm bg-gray-300/30" />
                     </td>
                   ))}
                 </tr>
