@@ -1,3 +1,9 @@
+## [1.1.5](https://github.com/lukesthl/fritz-ui/compare/v1.1.4...v1.1.5) (2025-05-29)
+
+### Bug Fixes
+
+* build with correct env ([6355819](https://github.com/lukesthl/fritz-ui/commit/6355819503273e910076cd0fffddf17c4ca316d8))
+
 ## [1.1.3](https://github.com/lukesthl/fritz-ui/compare/v1.1.2...v1.1.3) (2025-05-29)
 
 ### Bug Fixes
