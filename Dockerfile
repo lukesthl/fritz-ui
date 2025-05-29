@@ -8,17 +8,22 @@ ENV BUILT_NEXTAUTH_SECRET=secret
 ENV SKIP_ENV_VALIDATION=true
 
 FROM base AS deps
-
 WORKDIR /app
 
 COPY package.json bun.lock ./
-RUN bun install --production --frozen-lockfile
+RUN bun install --frozen-lockfile
 
 FROM node:22-alpine AS builder
 WORKDIR /app
+
+# Install build dependencies
+RUN apk add --no-cache libc6-compat python3 make g++
+
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Build with Node.js
+ENV NODE_ENV=production
 RUN npm run build
 
 # Production image, copy all the files and run next
