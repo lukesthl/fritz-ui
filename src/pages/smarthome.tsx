@@ -6,7 +6,6 @@ import { type NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import colors from "tailwindcss/colors";
 import { v4 as uuidv4 } from "uuid";
 import { z } from "zod";
 import { BatteryIcon } from "../components/icons/battery";
@@ -59,7 +58,7 @@ const columns: React.ComponentProps<
         <div className="flex items-center space-x-1">
           <BatteryIcon
             level={device.battery.percentage}
-            color={device.battery.low ? colors.red[500] : undefined}
+            color={device.battery.low ? "var(--color-red-500)" : undefined}
           />
           <p className="text-xs">{device.battery.percentage}%</p>
         </div>

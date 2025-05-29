@@ -19,4 +19,8 @@ jobs:
           bun-version: latest
       - name: Install dependencies
         run: bun install --frozen-lockfile --production
-      - run: npm run build --if-present
+      - name: Build
+        run: npm run build --if-present
+        env:
+          NEXTAUTH_SECRET: "dummy-secret-for-pr-build"
+          NEXTAUTH_URL: "http://localhost:3000"
