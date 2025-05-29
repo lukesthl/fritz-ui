@@ -1,3 +1,9 @@
+## [1.1.2](https://github.com/lukesthl/fritz-ui/compare/v1.1.1...v1.1.2) (2025-05-29)
+
+### Bug Fixes
+
+* nextjs version ([e8f16c6](https://github.com/lukesthl/fritz-ui/commit/e8f16c654806f3d0bd471b6e7f70943a77e8e6f8))
+
 ## [1.1.1](https://github.com/lukesthl/fritz-ui/compare/v1.1.0...v1.1.1) (2023-04-13)
 
 
