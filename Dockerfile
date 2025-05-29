@@ -1,12 +1,5 @@
 FROM oven/bun:alpine AS base
 
-ENV BUILT_FRITZBOX_HOST=fritz.box
-ENV BUILT_FRITZBOX_PORT=49000
-ENV BUILT_FRITZBOX_SSL=0
-ENV BUILT_NEXTAUTH_URL=http://localhost:3000
-ENV BUILT_NEXTAUTH_SECRET=secret
-ENV SKIP_ENV_VALIDATION=true
-
 FROM base AS deps
 WORKDIR /app
 
@@ -22,8 +15,16 @@ RUN apk add --no-cache libc6-compat python3 make g++
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+
 # Build with Node.js
 ENV NODE_ENV=production
+
+ENV BUILT_FRITZBOX_HOST=fritz.box
+ENV BUILT_FRITZBOX_PORT=49000
+ENV BUILT_FRITZBOX_SSL=0
+ENV BUILT_NEXTAUTH_URL=http://localhost:3000
+ENV BUILT_NEXTAUTH_SECRET=secret
+ENV SKIP_ENV_VALIDATION=true
 RUN npm run build
 
 # Production image, copy all the files and run next
