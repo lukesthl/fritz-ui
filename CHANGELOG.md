@@ -1,3 +1,9 @@
+## [1.1.6](https://github.com/lukesthl/fritz-ui/compare/v1.1.5...v1.1.6) (2025-05-30)
+
+### Bug Fixes
+
+* refactor fritzbox integration ([fdc4db5](https://github.com/lukesthl/fritz-ui/commit/fdc4db5ecf273e67e06446c3056d08b1c94a6ea1))
+
 ## [1.1.5](https://github.com/lukesthl/fritz-ui/compare/v1.1.4...v1.1.5) (2025-05-29)
 
 ### Bug Fixes
