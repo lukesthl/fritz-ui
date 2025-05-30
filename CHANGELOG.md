@@ -3,6 +3,13 @@
 ### Bug Fixes
 
 * refactor fritzbox integration ([fdc4db5](https://github.com/lukesthl/fritz-ui/commit/fdc4db5ecf273e67e06446c3056d08b1c94a6ea1))
+* update globalCache types and extend TTL for LRU cache ([3663609](https://github.com/lukesthl/fritz-ui/commit/3663609d852c04d0f6bbff644f412dc81ba15965))
+
+## [1.1.6](https://github.com/lukesthl/fritz-ui/compare/v1.1.5...v1.1.6) (2025-05-30)
+
+### Bug Fixes
+
+* refactor fritzbox integration ([fdc4db5](https://github.com/lukesthl/fritz-ui/commit/fdc4db5ecf273e67e06446c3056d08b1c94a6ea1))
 
 ## [1.1.5](https://github.com/lukesthl/fritz-ui/compare/v1.1.4...v1.1.5) (2025-05-29)
 
