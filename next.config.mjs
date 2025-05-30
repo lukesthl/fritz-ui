@@ -1,5 +1,3 @@
-import NextPWA from "next-pwa";
-
 !process.env.SKIP_ENV_VALIDATION && (await import("./src/env/server.mjs"));
 
 /** @type {import("next").NextConfig} */
@@ -14,8 +12,4 @@ const config = {
   output: "standalone",
 };
 
-const withPWA = NextPWA({
-  dest: "public",
-});
-
-export default withPWA(config);
+export default config;

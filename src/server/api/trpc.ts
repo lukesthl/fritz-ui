@@ -53,17 +53,21 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
 
   // Get the session from the server using the unstable_getServerSession wrapper function
   const session = await getServerAuthSession({ req, res });
-
-  if (session?.user) {
-    FritzBoxService.init({
-      username: session.user.fritzbox.username,
-      password: session.user.fritzbox.password,
-    });
+  if (!session?.user) {
+    throw new TRPCError({ code: "UNAUTHORIZED" });
   }
-  await FritzBoxService.fritzBox.init();
+  const credentials = await fritzBoxSessions.get(session.user.id);
+
+  if (!credentials) {
+    throw new TRPCError({ code: "UNAUTHORIZED" });
+  }
+  const fritzBox = createFritzBoxClient({
+    username: credentials.username,
+    password: credentials.password,
+  });
   return createInnerTRPCContext({
     session,
-    fritzBox: FritzBoxService.fritzBox,
+    fritzBox,
   });
 };
 
@@ -75,7 +79,8 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
  */
 import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
-import { FritzBoxService } from "./services/fritzbox.service";
+import { createFritzBoxClient } from "./services/fritzbox.service";
+import { fritzBoxSessions } from "./services/fritzbox.sessions";
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
   transformer: superjson,
@@ -99,7 +104,7 @@ const logger = t.middleware(async ({ path, type, next }) => {
       second: "numeric",
     }).format(start)}] [${
       result.ok ? "INFO" : "ERROR"
-    }] ==> ${type} ${path} in ${durationMs}ms`
+    }] ==> ${type} ${path} in ${durationMs}ms`,
   );
   return result;
 });

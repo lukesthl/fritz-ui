@@ -1,17 +1,26 @@
 import { randomUUID } from "crypto";
 import NextAuth, { type NextAuthOptions, type Session } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { FritzBoxService } from "../../../server/api/services/fritzbox.service";
 import { userSchema } from "../../../types/user.schema";
+import { fritzBoxSessions } from "../../../server/api/services/fritzbox.sessions";
+import { createFritzBoxClient } from "../../../server/api/services/fritzbox.service";
 
 export const authOptions: NextAuthOptions = {
   callbacks: {
-    session: ({ session: nextAuthSession, token }) => {
+    session: async ({ session: nextAuthSession, token }) => {
       const userToken = userSchema.safeParse(token);
       const session = nextAuthSession;
       if (session?.user && userToken.success) {
         session.user.id = userToken.data.id;
-        session.user.fritzbox = userToken.data.fritzbox;
+        session.user.fritzbox = {
+          username: userToken.data.fritzbox.username,
+        };
+      }
+      if (session.user) {
+        const creds = await fritzBoxSessions.get(session.user.id);
+        if (!creds) {
+          throw new Error("credentials not synced for user");
+        }
       }
       return session;
     },
@@ -19,9 +28,16 @@ export const authOptions: NextAuthOptions = {
       const user = userTmp as Session["user"];
       if (user) {
         token.id = user.id;
-        token.fritzbox = user.fritzbox;
+        token.fritzbox = {
+          username: user.fritzbox.username,
+        };
       }
       return token;
+    },
+  },
+  events: {
+    signOut: async ({ token }) => {
+      await fritzBoxSessions.remove(token.id as string);
     },
   },
   session: {
@@ -42,17 +58,22 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         if (credentials) {
-          FritzBoxService.init({
-            username: credentials?.username,
-            password: credentials?.password,
-          });
           try {
-            await FritzBoxService.fritzBox.deviceInfo.getInfo();
+            const fritzBox = createFritzBoxClient({
+              username: credentials.username,
+              password: credentials.password,
+            });
+            await fritzBox.deviceInfo.getInfo();
+            const sessionId = randomUUID();
+            await fritzBoxSessions.store(sessionId, {
+              username: credentials.username,
+              password: credentials.password,
+            });
+
             return {
-              id: randomUUID(),
+              id: sessionId,
               fritzbox: {
                 username: credentials.username,
-                password: credentials.password,
               },
             } satisfies Session["user"];
           } catch (error) {

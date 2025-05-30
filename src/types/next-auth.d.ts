@@ -10,7 +10,6 @@ declare module "next-auth" {
       id: string;
       fritzbox: {
         username: string;
-        password: string;
       };
     };
   }
