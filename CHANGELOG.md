@@ -1,3 +1,9 @@
+## [1.1.7-next.4](https://github.com/lukesthl/fritz-ui/compare/v1.1.7-next.3...v1.1.7-next.4) (2025-06-02)
+
+### Bug Fixes
+
+* **docker:** add dockerPlatform support ([ae50b42](https://github.com/lukesthl/fritz-ui/commit/ae50b4272eb33d90d2f1b592879d5e3aede06d23))
+
 ## [1.1.7-next.3](https://github.com/lukesthl/fritz-ui/compare/v1.1.7-next.2...v1.1.7-next.3) (2025-06-02)
 
 ### Bug Fixes
