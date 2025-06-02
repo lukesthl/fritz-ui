@@ -1,3 +1,10 @@
+## [1.1.7](https://github.com/lukesthl/fritz-ui/compare/v1.1.6...v1.1.7) (2025-06-02)
+
+### Bug Fixes
+
+* **release:** add linting step to release workflow ([2cc67a0](https://github.com/lukesthl/fritz-ui/commit/2cc67a07780ea49f2cd85c2fb0fc4dbbc696a155))
+* **release:** skip environment validation during linting in release workflow ([074c598](https://github.com/lukesthl/fritz-ui/commit/074c598f2e70baaedd7d41c10a1d62ccbd1aa895))
+
 ## [1.1.7-next.4](https://github.com/lukesthl/fritz-ui/compare/v1.1.7-next.3...v1.1.7-next.4) (2025-06-02)
 
 ### Bug Fixes
