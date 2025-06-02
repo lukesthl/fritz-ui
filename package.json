@@ -139,14 +139,15 @@
           "dockerLogin": false,
           "dockerProject": "lukesthl",
           "dockerTags": [
-            "{{major}}.{{minor}}.{{patch}}",
-            "{{major}}.{{minor}}",
-            "{{major}}-latest",
-            "{{git_sha}}",
-            "latest"
+            "{{#if prerelease.[0]}}{{prerelease.[0]}}{{else}}latest{{/if}}",
+            "{{major}}-{{#if prerelease.[0]}}{{prerelease.[0]}}{{else}}latest{{/if}}",
+            "{{major}}.{{minor}}-{{#if prerelease.[0]}}{{prerelease.[0]}}{{else}}latest{{/if}}",
+            "{{version}}"
           ],
           "dockerArgs": {
-            "GITHUB_TOKEN": true
+            "GITHUB_TOKEN": true,
+            "BUILDPLATFORM": "linux/amd64",
+            "TARGETPLATFORM": "linux/amd64,linux/arm64"
           }
         }
       ]
