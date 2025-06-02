@@ -15,15 +15,8 @@ RUN apk add --no-cache libc6-compat python3 make g++
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-
 # Build with Node.js
 ENV NODE_ENV=production
-
-ENV BUILT_FRITZBOX_HOST=fritz.box
-ENV BUILT_FRITZBOX_PORT=49000
-ENV BUILT_FRITZBOX_SSL=0
-ENV BUILT_NEXTAUTH_URL=http://localhost:3000
-ENV BUILT_NEXTAUTH_SECRET=secret
 ENV SKIP_ENV_VALIDATION=true
 RUN npm run build
 
@@ -33,11 +26,6 @@ WORKDIR /app
 
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
-ENV NEXTAUTH_URL=http://localhost:3000
-ENV NEXTAUTH_SECRET=secret
-ENV FRITZBOX_HOST=fritz.box
-ENV FRITZBOX_PORT=49000
-ENV FRITZBOX_SSL=0
 
 COPY --from=builder /app/public ./public
 
@@ -46,8 +34,6 @@ COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-COPY --from=builder /app/scripts ./scripts
-
 EXPOSE 3000
 ENV PORT 3000
-CMD ["./scripts/start.sh"]
+CMD HOSTNAME="0.0.0.0" node server.js
