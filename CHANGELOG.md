@@ -1,3 +1,9 @@
+## [1.1.7-next.1](https://github.com/lukesthl/fritz-ui/compare/v1.1.6...v1.1.7-next.1) (2025-06-02)
+
+### Bug Fixes
+
+* **env:** remove env replacement to fix startup issues ([395a0ed](https://github.com/lukesthl/fritz-ui/commit/395a0edff21a16516f05bc0bf5946533214c0a5a))
+
 ## [1.1.6](https://github.com/lukesthl/fritz-ui/compare/v1.1.5...v1.1.6) (2025-05-30)
 
 ### Bug Fixes
