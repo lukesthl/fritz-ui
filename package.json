@@ -144,10 +144,12 @@
             "{{major}}.{{minor}}-{{#if prerelease.[0]}}{{prerelease.[0]}}{{else}}latest{{/if}}",
             "{{version}}"
           ],
+          "dockerPlatform": [
+            "linux/amd64",
+            "linux/arm64"
+          ],
           "dockerArgs": {
-            "GITHUB_TOKEN": true,
-            "BUILDPLATFORM": "linux/amd64",
-            "TARGETPLATFORM": "linux/amd64,linux/arm64"
+            "GITHUB_TOKEN": true
           }
         }
       ]
