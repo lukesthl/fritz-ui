@@ -1,3 +1,9 @@
+## [1.1.7-next.3](https://github.com/lukesthl/fritz-ui/compare/v1.1.7-next.2...v1.1.7-next.3) (2025-06-02)
+
+### Bug Fixes
+
+* **docker:** readd default env ([b7ac0f2](https://github.com/lukesthl/fritz-ui/commit/b7ac0f2985067a9e7301738ca7114c5296dff5eb))
+
 ## [1.1.7-next.2](https://github.com/lukesthl/fritz-ui/compare/v1.1.7-next.1...v1.1.7-next.2) (2025-06-02)
 
 ### Bug Fixes
