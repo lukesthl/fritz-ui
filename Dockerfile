@@ -25,6 +25,11 @@ FROM builder AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
+ENV NEXTAUTH_URL=http://localhost:3000
+ENV NEXTAUTH_SECRET=secret
+ENV FRITZBOX_HOST=fritz.box
+ENV FRITZBOX_PORT=49000
+ENV FRITZBOX_SSL=0
 ENV NEXT_TELEMETRY_DISABLED 1
 
 COPY --from=builder /app/public ./public
