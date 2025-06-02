@@ -1,3 +1,9 @@
+## [1.1.7-next.2](https://github.com/lukesthl/fritz-ui/compare/v1.1.7-next.1...v1.1.7-next.2) (2025-06-02)
+
+### Bug Fixes
+
+* update docker tags and add build platform support ([d13f386](https://github.com/lukesthl/fritz-ui/commit/d13f38665478a770581da935e8dc6bc69ba71a94))
+
 ## [1.1.7-next.1](https://github.com/lukesthl/fritz-ui/compare/v1.1.6...v1.1.7-next.1) (2025-06-02)
 
 ### Bug Fixes
