@@ -1,3 +1,27 @@
+## [1.1.7-next.4](https://github.com/lukesthl/fritz-ui/compare/v1.1.7-next.3...v1.1.7-next.4) (2025-06-02)
+
+### Bug Fixes
+
+* **docker:** add dockerPlatform support ([ae50b42](https://github.com/lukesthl/fritz-ui/commit/ae50b4272eb33d90d2f1b592879d5e3aede06d23))
+
+## [1.1.7-next.3](https://github.com/lukesthl/fritz-ui/compare/v1.1.7-next.2...v1.1.7-next.3) (2025-06-02)
+
+### Bug Fixes
+
+* **docker:** readd default env ([b7ac0f2](https://github.com/lukesthl/fritz-ui/commit/b7ac0f2985067a9e7301738ca7114c5296dff5eb))
+
+## [1.1.7-next.2](https://github.com/lukesthl/fritz-ui/compare/v1.1.7-next.1...v1.1.7-next.2) (2025-06-02)
+
+### Bug Fixes
+
+* update docker tags and add build platform support ([d13f386](https://github.com/lukesthl/fritz-ui/commit/d13f38665478a770581da935e8dc6bc69ba71a94))
+
+## [1.1.7-next.1](https://github.com/lukesthl/fritz-ui/compare/v1.1.6...v1.1.7-next.1) (2025-06-02)
+
+### Bug Fixes
+
+* **env:** remove env replacement to fix startup issues ([395a0ed](https://github.com/lukesthl/fritz-ui/commit/395a0edff21a16516f05bc0bf5946533214c0a5a))
+
 ## [1.1.6](https://github.com/lukesthl/fritz-ui/compare/v1.1.5...v1.1.6) (2025-05-30)
 
 ### Bug Fixes

@@ -78,7 +78,11 @@
   },
   "release": {
     "branches": [
-      "main"
+      "main",
+      {
+        "name": "next",
+        "prerelease": true
+      }
     ],
     "plugins": [
       [
@@ -135,11 +139,14 @@
           "dockerLogin": false,
           "dockerProject": "lukesthl",
           "dockerTags": [
-            "{{major}}.{{minor}}.{{patch}}",
-            "{{major}}.{{minor}}",
-            "{{major}}-latest",
-            "{{git_sha}}",
-            "latest"
+            "{{#if prerelease.[0]}}{{prerelease.[0]}}{{else}}latest{{/if}}",
+            "{{major}}-{{#if prerelease.[0]}}{{prerelease.[0]}}{{else}}latest{{/if}}",
+            "{{major}}.{{minor}}-{{#if prerelease.[0]}}{{prerelease.[0]}}{{else}}latest{{/if}}",
+            "{{version}}"
+          ],
+          "dockerPlatform": [
+            "linux/amd64",
+            "linux/arm64"
           ],
           "dockerArgs": {
             "GITHUB_TOKEN": true
