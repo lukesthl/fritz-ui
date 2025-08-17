@@ -36,27 +36,41 @@ docker run -d --restart=always -p 3000:3000 --name fritz-ui ghcr.io/lukesthl/fri
 
 ## Configuration
 
+### Basic Configuration
+
 ```bash
-docker run -d --restart=always -p 3000:3000 -e NEXTAUTH_URL='http://localhost:3000' \
+docker run -d --restart=always -p 3000:3000 \
   -e NEXTAUTH_URL='http://localhost:3000' \
   -e NEXTAUTH_SECRET='secret' \
   -e FRITZBOX_HOST='fritz.box' \
-  -e FRITZBOX_PORT='49000'  \
+  -e FRITZBOX_PORT='49000' \
   -e FRITZBOX_SSL='0' \
   --name fritz-ui ghcr.io/lukesthl/fritz-ui:latest
 ```
 
-### Run-time variables
+### Using FritzBox IP Address
 
-These variables must also be provided at runtime
+```bash
+docker run -d --restart=always -p 3000:3000 \
+  -e NEXTAUTH_URL='http://localhost:3000' \
+  -e NEXTAUTH_SECRET='secret' \
+  -e FRITZBOX_HOST='192.168.1.1' \
+  -e FRITZBOX_PORT='49000' \
+  -e FRITZBOX_SSL='0' \
+  --name fritz-ui ghcr.io/lukesthl/fritz-ui:latest
+```
+
+### Environment Variables
+
+These variables can be provided at runtime to customize the FritzBox connection:
 
 | Variable        | Description                                                                                                                                                                      | Required | Default                 |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------------------- |
 | NEXTAUTH_URL    | Base URL of the site. NOTE: if this value differs from the value used at build-time, there will be a slight delay during container start (to update the statically built files). | optional | `http://localhost:3000` |
-| NEXTAUTH_SECRET | jwt secret                                                                                                                                                                       | optional | `secret`                |
-| FRITZBOX_HOST   | fritzbox host                                                                                                                                                                    | optional | `fritz.box`             |
-| FRITZBOX_PORT   | fritzbox port                                                                                                                                                                    | optional | `49000`                 |
-| FRITZBOX_SSL    | is fritzbox accessible via https (1 = true, 0 = false)                                                                                                                           | optional | `0`                     |
+| NEXTAUTH_SECRET | JWT secret for authentication                                                                                                                                                    | optional | `secret`                |
+| FRITZBOX_HOST   | FritzBox hostname or IP address                                                                                                                                                  | optional | `fritz.box`             |
+| FRITZBOX_PORT   | FritzBox port (49000 for HTTP, 49443 for HTTPS)                                                                                                                                  | optional | `49000`                 |
+| FRITZBOX_SSL    | Whether FritzBox is accessible via HTTPS (1 = true, 0 = false)                                                                                                                   | optional | `0`                     |
 
 ## Tech Stack
 
@@ -78,3 +92,51 @@ These variables must also be provided at runtime
 ## Security
 
 You can technically host it on a vps, however i don't recommend it. Always host on a private network, which is not accessible publicly.
+
+## Troubleshooting
+
+### Common Error: Fritzbox not reachable
+
+#### 1. **Check FritzBox Access**
+
+First, verify you can access your FritzBox directly:
+
+```bash
+# Test HTTP access (replace with your FritzBox IP)
+curl http://192.168.1.1:49000/tr64desc.xml
+```
+
+##### 2. **Check User Permissions**
+
+In your FritzBox admin interface:
+
+1. Go to **System** → **FritzBox Users**
+2. Ensure your user has the correct permissions
+
+##### 3. **Enable TR-064 Interface**
+
+1. Go to **Heimnetz** → **Netzwerk**
+2. Switch to Tab **"Netzwerkeinstellungen"** and open **"erweiterte Einstellungen"**
+3. Ensure **"Zugriff für Apps erlauben"** is enabled
+
+##### 4. **Network Configuration Issues**
+
+```bash
+# Test if the hostname resolves
+nslookup fritz.box
+
+# Try using IP address instead
+docker run -d --restart=always -p 3000:3000 \
+  -e NEXTAUTH_URL='http://localhost:3000' \
+  -e NEXTAUTH_SECRET='secret' \
+  -e FRITZBOX_HOST='192.168.1.1' \
+  -e FRITZBOX_PORT='49000' \
+  -e FRITZBOX_SSL='0' \
+  --name fritz-ui ghcr.io/lukesthl/fritz-ui:latest
+```
+
+#### Still Having Issues?
+
+2. **Verify network connectivity**: `docker exec fritz-ui ping fritz.box`
+3. **Test from host**: Try the same connection from your Docker host machine
+4. **Check FritzBox model**: Some older models may have limited TR-064 support
