@@ -1,3 +1,9 @@
+## [1.1.8](https://github.com/lukesthl/fritz-ui/compare/v1.1.7...v1.1.8) (2025-08-17)
+
+### Bug Fixes
+
+* **release:** add error boundaries for FritzOS 8 compatibility ([41365ba](https://github.com/lukesthl/fritz-ui/commit/41365ba4a02a43417d80424fa867958c833a9ebd))
+
 ## [1.1.7](https://github.com/lukesthl/fritz-ui/compare/v1.1.6...v1.1.7) (2025-06-02)
 
 ### Bug Fixes
