@@ -10,6 +10,7 @@ Beautiful, fast and modern UI for the FRITZ!Box. Get a simple overview over your
   <a href="#installation"><strong>Installation</strong></a> ·
   <a href="#configuration"><strong>Configuration</strong></a> ·
   <a href="#tech-stack"><strong>Tech Stack</strong></a>
+  <a href="#troubleshooting"><strong>Troubleshooting</strong></a>
 </p>
 <br/>
 
