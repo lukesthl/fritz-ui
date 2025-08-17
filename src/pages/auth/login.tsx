@@ -64,10 +64,12 @@ const Login: NextPage = () => {
           animate={{ scale: [1, 3] }}
           transition={{
             repeat: Infinity,
-            originX: 1,
-            originY: 0,
             duration: 10,
             repeatType: "mirror",
+          }}
+          style={{
+            originX: 1,
+            originY: 0,
           }}
         />
       </div>
