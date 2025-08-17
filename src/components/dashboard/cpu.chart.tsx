@@ -12,7 +12,7 @@ export const CpuChart = () => {
     loading: query.isLoading,
     categories: [title],
     index: "date",
-    data: (query.data?.data.cpuutil.series.at(0) || []).map(
+    data: (query.data?.data?.cpuutil?.series?.at(0) || []).map(
       (cpuUsage, index) => {
         if (!query.data) {
           return {
@@ -34,6 +34,24 @@ export const CpuChart = () => {
         };
       },
     ),
+    error:
+      !query.data?.data.cpuutil && !query.isLoading
+        ? new Error(
+            "CPU-Auslastung ist seit Fritz-OS 8.0 nicht mehr verfügbar.",
+          )
+        : undefined,
   };
   return <DashboardCard {...cpuPercentageChart} />;
+};
+
+export const CpuChartFallback = () => {
+  return (
+    <DashboardCard
+      title={title}
+      error={new Error("Es ist ein Fehler aufgetreten.")}
+      data={[]}
+      categories={[]}
+      index="date"
+    />
+  );
 };

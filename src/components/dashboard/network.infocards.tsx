@@ -83,3 +83,11 @@ export const NetworkInfoCards = () => {
     </>
   );
 };
+
+export const NetworkInfoCardsFallback = () => {
+  return (
+    <div className="flex flex-col space-y-4">
+      <div className="text-white/70">Es ist ein Fehler aufgetreten.</div>
+    </div>
+  );
+};

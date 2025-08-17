@@ -12,7 +12,7 @@ export const CpuTempChart = () => {
     loading: query.isLoading,
     categories: [title],
     index: "date",
-    data: (query.data?.data.cputemp.series[0] || [])
+    data: (query.data?.data?.cputemp?.series?.at(0) || [])
       .filter((cpuTemp) => parseInt(cpuTemp) > 40)
       .map((cpuTemp, index) => {
         if (!query.data) {
@@ -38,6 +38,24 @@ export const CpuTempChart = () => {
     maxValue: 140,
     minValue: 40,
     colors: ["cyan"],
+    error:
+      !query.data?.data.cputemp && !query.isLoading
+        ? new Error(
+            "CPU-Temperatur ist seit Fritz-OS 8.0 nicht mehr verfügbar.",
+          )
+        : undefined,
   };
   return <DashboardCard {...cpuTempChart} />;
+};
+
+export const CpuTempChartFallback = () => {
+  return (
+    <DashboardCard
+      title={title}
+      error={new Error("Es ist ein Fehler aufgetreten.")}
+      data={[]}
+      categories={[]}
+      index="date"
+    />
+  );
 };

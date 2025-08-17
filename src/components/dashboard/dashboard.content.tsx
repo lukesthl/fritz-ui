@@ -1,24 +1,33 @@
-import { BandwidthChart } from "./bandwidth.chart";
-import { CpuChart } from "./cpu.chart";
-import { CpuTempChart } from "./cputemp.chart";
-import { NetworkInfoCards } from "./network.infocards";
+import { ErrorBoundary } from "react-error-boundary";
+import { BandwidthChart, BandwidthChartFallback } from "./bandwidth.chart";
+import { CpuChart, CpuChartFallback } from "./cpu.chart";
+import { CpuTempChart, CpuTempChartFallback } from "./cputemp.chart";
+import {
+  NetworkInfoCards,
+  NetworkInfoCardsFallback,
+} from "./network.infocards";
 import { SmartHomeCharts } from "./smarthome.charts";
 
 export const DashboardContent = () => {
   return (
     <div className="grid grid-cols-2 gap-4 md:grid-cols-6">
       <div className="col-span-2">
-        <CpuChart />
+        <ErrorBoundary fallback={<CpuChartFallback />}>
+          <CpuChart />
+        </ErrorBoundary>
       </div>
       <div className="col-span-2 md:col-span-4">
-        <BandwidthChart />
+        <ErrorBoundary fallback={<BandwidthChartFallback />}>
+          <BandwidthChart />
+        </ErrorBoundary>
       </div>
-      <NetworkInfoCards />
+      <ErrorBoundary fallback={<NetworkInfoCardsFallback />}>
+        <NetworkInfoCards />
+      </ErrorBoundary>
       <div className="col-span-2 md:col-span-2">
-        <CpuChart />
-      </div>
-      <div className="col-span-2 md:col-span-2">
-        <CpuTempChart />
+        <ErrorBoundary fallback={<CpuTempChartFallback />}>
+          <CpuTempChart />
+        </ErrorBoundary>
       </div>
       <SmartHomeCharts />
     </div>

@@ -1,6 +1,8 @@
 import { trpc } from "../../lib/api";
 import { DashboardCard } from "./dashboard.card";
 
+const title = "Bandbreite";
+
 export const BandwidthChart = () => {
   const networkMonitorQuery = trpc.networkMonitor.getStats.useQuery(undefined, {
     refetchInterval: 5000,
@@ -10,7 +12,7 @@ export const BandwidthChart = () => {
   const networkTraffic = networkMonitorQuery.data?.currentNetworkTraffic;
 
   const bandwidthChart: React.ComponentProps<typeof DashboardCard> = {
-    title: "Bandbreite",
+    title,
     loading: networkMonitorQuery.isLoading,
     categories: ["Downstream", "Upstream"],
     index: "date",
@@ -45,4 +47,16 @@ export const BandwidthChart = () => {
     colors: ["yellow", "green"],
   };
   return <DashboardCard {...bandwidthChart} />;
+};
+
+export const BandwidthChartFallback = () => {
+  return (
+    <DashboardCard
+      title={title}
+      error={new Error("Es ist ein Fehler aufgetreten.")}
+      data={[]}
+      categories={[]}
+      index="date"
+    />
+  );
 };
