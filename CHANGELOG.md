@@ -1,3 +1,9 @@
+## [1.1.9](https://github.com/lukesthl/fritz-ui/compare/v1.1.8...v1.1.9) (2025-08-23)
+
+### Bug Fixes
+
+* update fritzbox package for logging ([fb4714c](https://github.com/lukesthl/fritz-ui/commit/fb4714c5564ac93eecaea314c7d1c8d57c6cb87f))
+
 ## [1.1.8](https://github.com/lukesthl/fritz-ui/compare/v1.1.7...v1.1.8) (2025-08-17)
 
 ### Bug Fixes
