@@ -10,7 +10,7 @@ const Wrapper = ({
     <div
       className={cn(
         "overflow-hidden rounded-lg border border-white/20 shadow-sm",
-        className
+        className,
       )}
       {...props}
     >
@@ -25,7 +25,7 @@ const Header = ({
   ...props
 }: React.ComponentProps<"div">) => (
   <div className={cn("bg-white/10 px-4 py-3.5 sm:px-6", className)} {...props}>
-    <h2 className="text-lg font-medium leading-6 text-white/90">{children}</h2>
+    <h2 className="text-lg leading-6 font-medium text-white/90">{children}</h2>
   </div>
 );
 
@@ -37,7 +37,7 @@ const Content = ({
   <div
     className={cn(
       "box-blur border-t border-white/20 bg-[#191A23]/30 shadow-white/10",
-      className
+      className,
     )}
     {...props}
   >

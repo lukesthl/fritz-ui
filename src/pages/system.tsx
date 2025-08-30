@@ -6,12 +6,18 @@ import { Card } from "../components/card";
 import { List } from "../components/list";
 import { Button } from "../components/button";
 import { ArrowPathIcon } from "@heroicons/react/20/solid";
-import { cn } from "../components/utils/class.helper";
-import { AreaChart } from "../components/charts/area.chart";
+import { ErrorBoundary } from "react-error-boundary";
+import {
+  CpuLoadageChart,
+  CpuLoadageChartFallback,
+} from "../components/system/cpu.loadage";
+import {
+  CpuTemperatureChartFallback,
+  CpuTemperatureChart,
+} from "../components/system/cpu.temperature";
 
 const System: NextPage = () => {
   const deviceInfoQuery = trpc.deviceInfo.getInfo.useQuery();
-  const ecoStatsQuery = trpc.deviceInfo.getEcoStats.useQuery();
   const rebootMutation = trpc.deviceInfo.reboot.useMutation();
   return (
     <PageContent
@@ -60,143 +66,12 @@ const System: NextPage = () => {
             </List.Wrapper>
           </Card.Content>
         </Card.Wrapper>
-        <Card.Wrapper>
-          <Card.Header>CPU-Auslastung</Card.Header>
-          <Card.Content>
-            <dl>
-              <div className="max-w-full border-y border-white/20 px-4 py-5 font-mono text-sm whitespace-pre-wrap text-white/70 sm:gap-4 sm:px-6">
-                {ecoStatsQuery.isLoading ? (
-                  <>
-                    <span className="hidden">
-                      {"only to show animation when loaded"}
-                    </span>
-                    <AreaChart
-                      data={[]}
-                      categories={["CPU-Auslastung"]}
-                      index="date"
-                      maxValue={100}
-                      colors={["indigo"]}
-                      valueFormatter={(value) => `${value}%`}
-                      className={cn("mt-1 h-72")}
-                    />
-                  </>
-                ) : (
-                  <AreaChart
-                    data={(
-                      ecoStatsQuery.data?.data.cpuutil.series[0] || []
-                    ).map((cpuUsage, index) => {
-                      const date = new Date();
-                      let nextHour: number | undefined = undefined;
-                      if (!nextHour && ecoStatsQuery.data?.data) {
-                        let newIndex = index;
-                        while (
-                          newIndex <
-                          ecoStatsQuery.data?.data.cputemp.labels.length
-                        ) {
-                          const newHour =
-                            ecoStatsQuery.data?.data.cputemp.labels[newIndex];
-                          if (newHour && typeof newHour === "number") {
-                            nextHour = newHour;
-                            break;
-                          }
-                          newIndex += 1;
-                        }
-                      }
-                      if (nextHour) {
-                        date.setHours(nextHour);
-                      }
-                      date.setMinutes(0);
-                      const dateToShow = Intl.DateTimeFormat("de", {
-                        timeStyle: "short",
-                      }).format(date);
-                      console.log(dateToShow);
-                      return {
-                        date: dateToShow,
-                        "CPU-Auslastung": cpuUsage,
-                      };
-                    })}
-                    categories={["CPU-Auslastung"]}
-                    index="date"
-                    maxValue={100}
-                    colors={["indigo"]}
-                    valueFormatter={(value) => `${value}%`}
-                    className="mt-1 h-72"
-                  />
-                )}
-              </div>
-            </dl>
-          </Card.Content>
-        </Card.Wrapper>
-        <Card.Wrapper>
-          <Card.Header>CPU-Temperatur</Card.Header>
-          <Card.Content>
-            <dl>
-              <div className="max-w-full border-y border-white/20 px-4 py-5 font-mono text-sm whitespace-pre-wrap text-white/70 sm:gap-4 sm:px-6">
-                {ecoStatsQuery.isLoading ? (
-                  <>
-                    <span className="hidden">
-                      {"only to show animation when loaded"}
-                    </span>
-                    <AreaChart
-                      data={[]}
-                      categories={["CPU-Temperatur"]}
-                      showTooltip
-                      index="date"
-                      maxValue={140}
-                      minValue={40}
-                      colors={["indigo"]}
-                      valueFormatter={(value) => `${value}°C`}
-                      className="mt-1 h-72"
-                    />
-                  </>
-                ) : (
-                  <AreaChart
-                    data={(ecoStatsQuery.data?.data.cputemp.series[0] || [])
-                      .filter((cpuTemp) => parseInt(cpuTemp) > 40)
-                      .map((cpuTemp, index) => {
-                        const date = new Date();
-                        let nextHour: number | undefined = undefined;
-                        if (!nextHour && ecoStatsQuery.data?.data) {
-                          let newIndex = index;
-                          while (
-                            newIndex <
-                            ecoStatsQuery.data?.data.cputemp.labels.length
-                          ) {
-                            const newHour =
-                              ecoStatsQuery.data?.data.cputemp.labels[newIndex];
-                            if (newHour && typeof newHour === "number") {
-                              nextHour = newHour;
-                              break;
-                            }
-                            newIndex += 1;
-                          }
-                        }
-                        if (nextHour) {
-                          date.setHours(nextHour);
-                        }
-                        date.setMinutes(0);
-                        const dateToShow = Intl.DateTimeFormat("de", {
-                          timeStyle: "short",
-                        }).format(date);
-                        return {
-                          date: dateToShow,
-                          "CPU-Temperatur": cpuTemp,
-                        };
-                      })}
-                    categories={["CPU-Temperatur"]}
-                    showTooltip
-                    index="date"
-                    maxValue={140}
-                    minValue={40}
-                    colors={["indigo"]}
-                    valueFormatter={(value) => `${value}°C`}
-                    className="mt-1 h-72"
-                  />
-                )}
-              </div>
-            </dl>
-          </Card.Content>
-        </Card.Wrapper>
+        <ErrorBoundary fallback={<CpuLoadageChartFallback />}>
+          <CpuLoadageChart />
+        </ErrorBoundary>
+        <ErrorBoundary fallback={<CpuTemperatureChartFallback />}>
+          <CpuTemperatureChart />
+        </ErrorBoundary>
         <Card.Wrapper>
           <Card.Header>Logs</Card.Header>
           <Card.Content className="max-h-[500px] overflow-y-auto">
