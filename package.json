@@ -50,7 +50,7 @@
     "fuse.js": "^7.1.0",
     "lru-cache": "^11.1.0",
     "lucide-react": "^0.539.0",
-    "next": "15.4.6",
+    "next": "15.4.7",
     "next-auth": "^4.24.11",
     "next-pwa": "^5.6.0",
     "react": "19.1.1",
