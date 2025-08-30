@@ -1,3 +1,9 @@
+## [1.1.10](https://github.com/lukesthl/fritz-ui/compare/v1.1.9...v1.1.10) (2025-08-30)
+
+### Bug Fixes
+
+* CPU load and temperature charts on system page with error handling ([0cb454b](https://github.com/lukesthl/fritz-ui/commit/0cb454b4fad4f753aba31cc9f876afb424edbece))
+
 ## [1.1.9](https://github.com/lukesthl/fritz-ui/compare/v1.1.8...v1.1.9) (2025-08-23)
 
 ### Bug Fixes
