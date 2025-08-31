@@ -1,4 +1,3 @@
-import { ErrorBoundary } from "react-error-boundary";
 import { Card } from "../card";
 import { AreaChart } from "../charts/area.chart";
 import { cn } from "../utils/class.helper";
