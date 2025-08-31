@@ -1,3 +1,14 @@
+## [1.1.11](https://github.com/lukesthl/fritz-ui/compare/v1.1.10...v1.1.11) (2025-08-31)
+
+### Bug Fixes
+
+* pullrequest workflow ([9273794](https://github.com/lukesthl/fritz-ui/commit/927379471e0e484fd2b6687ed79247fd3cd7ecba))
+
+### Dependencies and Other Build Updates
+
+* **deps:** bump next from 15.4.6 to 15.4.7 ([8681518](https://github.com/lukesthl/fritz-ui/commit/868151864371a5067ba8838c79d05f1a2f814703))
+* update lockfile ([4924b02](https://github.com/lukesthl/fritz-ui/commit/4924b02b2734f1af6ae4af9df50c8e033dfda81b))
+
 ## [1.1.10](https://github.com/lukesthl/fritz-ui/compare/v1.1.9...v1.1.10) (2025-08-30)
 
 ### Bug Fixes
