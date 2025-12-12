@@ -1,3 +1,13 @@
+## [1.1.13](https://github.com/lukesthl/fritz-ui/compare/v1.1.12...v1.1.13) (2025-12-12)
+
+### Bug Fixes
+
+* update bun.lock ([75c3a05](https://github.com/lukesthl/fritz-ui/commit/75c3a058a7f0b63c1d5331e1a8e9be3cff4e6c6e))
+
+### Dependencies and Other Build Updates
+
+* **deps:** bump next from 15.4.8 to 15.4.9 ([6076255](https://github.com/lukesthl/fritz-ui/commit/6076255ae1acae79119d52d20123ad9a23b67ee5))
+
 ## [1.1.12](https://github.com/lukesthl/fritz-ui/compare/v1.1.11...v1.1.12) (2025-12-04)
 
 ### Bug Fixes
